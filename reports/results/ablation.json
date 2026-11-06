@@ -1,0 +1,159 @@
+{
+ "design": {
+  "target": "next-month S&P 500 price return minus TB3MS/12",
+  "sample_start": "1986-01",
+  "oos_start": "1996-01",
+  "refit": "annual, expanding window",
+  "inner_selection": "last 60 training months",
+  "lambdas": [
+   0.0,
+   0.1,
+   1.0,
+   10.0,
+   100.0,
+   1000.0
+  ],
+  "cost_bps_per_switch": 2.0
+ },
+ "steps": [
+  {
+   "step": "1 trend",
+   "features": [
+    "mom12_1",
+    "above10m"
+   ],
+   "oos_start": "1998-01",
+   "oos_end": "2026-08",
+   "months": 344,
+   "R2_OS vs hist mean": -0.012693464383914055,
+   "Clark-West t vs hist mean": -1.5775876088560796,
+   "CW p": 0.9426698095585735,
+   "lambda (most used)": 1000.0,
+   "timing CAGR": 0.06589193947480831,
+   "timing Sharpe": 0.3615993389868685,
+   "timing MaxDD": -0.46908589736343087,
+   "timing Time invested": 0.9738372093023255,
+   "timing Switches/yr": 0.10465116279069767
+  },
+  {
+   "step": "2 + season",
+   "features": [
+    "mom12_1",
+    "above10m",
+    "sweet_spot"
+   ],
+   "oos_start": "1998-01",
+   "oos_end": "2026-08",
+   "months": 344,
+   "R2_OS vs hist mean": -0.013764450006759965,
+   "Clark-West t vs hist mean": -1.6201339881187145,
+   "CW p": 0.9473982511218852,
+   "lambda (most used)": 1000.0,
+   "timing CAGR": 0.06589193947480831,
+   "timing Sharpe": 0.3615993389868685,
+   "timing MaxDD": -0.46908589736343087,
+   "timing Time invested": 0.9738372093023255,
+   "timing Switches/yr": 0.10465116279069767
+  },
+  {
+   "step": "3 + policy",
+   "features": [
+    "mom12_1",
+    "above10m",
+    "sweet_spot",
+    "epu_z",
+    "post_midterm"
+   ],
+   "oos_start": "1998-01",
+   "oos_end": "2026-08",
+   "months": 344,
+   "R2_OS vs hist mean": -0.017879409587211903,
+   "Clark-West t vs hist mean": -0.9824697400702744,
+   "CW p": 0.837065758269981,
+   "lambda (most used)": 1000.0,
+   "timing CAGR": 0.06355250873445928,
+   "timing Sharpe": 0.3529146048429361,
+   "timing MaxDD": -0.46908589736343087,
+   "timing Time invested": 0.9476744186046512,
+   "timing Switches/yr": 0.3837209302325581
+  },
+  {
+   "step": "4 + macro",
+   "features": [
+    "mom12_1",
+    "above10m",
+    "sweet_spot",
+    "epu_z",
+    "post_midterm",
+    "term",
+    "credit",
+    "d_gs10_6m"
+   ],
+   "oos_start": "1998-01",
+   "oos_end": "2026-08",
+   "months": 344,
+   "R2_OS vs hist mean": -0.05032671086256024,
+   "Clark-West t vs hist mean": -0.8222512451472873,
+   "CW p": 0.7945330406724653,
+   "lambda (most used)": 1000.0,
+   "timing CAGR": 0.06761512750298082,
+   "timing Sharpe": 0.3746969881080455,
+   "timing MaxDD": -0.4628116596094136,
+   "timing Time invested": 0.9593023255813954,
+   "timing Switches/yr": 0.10465116279069767
+  },
+  {
+   "step": "5 + costs",
+   "features": [
+    "mom12_1",
+    "above10m",
+    "sweet_spot",
+    "epu_z",
+    "post_midterm",
+    "term",
+    "credit",
+    "d_gs10_6m"
+   ],
+   "oos_start": "1998-01",
+   "oos_end": "2026-08",
+   "months": 344,
+   "timing CAGR": 0.06759347707691288,
+   "timing Sharpe": 0.3745650555030738,
+   "timing MaxDD": -0.4628116596094135,
+   "timing Time invested": 0.9593023255813954,
+   "timing Switches/yr": 0.10465116279069767
+  }
+ ],
+ "increments": [
+  {
+   "added": "2 + season",
+   "vs": "1 trend",
+   "delta R2_OS": -0.001070985622845779,
+   "Clark-West t": -0.010828407630676712,
+   "p": 0.5043198252133727
+  },
+  {
+   "added": "3 + policy",
+   "vs": "2 + season",
+   "delta R2_OS": -0.004793950990841061,
+   "Clark-West t": -0.050280080844938214,
+   "p": 0.5200504015636361
+  },
+  {
+   "added": "4 + macro",
+   "vs": "3 + policy",
+   "delta R2_OS": -0.03244730127534838,
+   "Clark-West t": -0.42371035814172614,
+   "p": 0.6641114699440017
+  }
+ ],
+ "buy_hold": {
+  "CAGR": 0.07431140732913732,
+  "Sharpe": 0.4072247305908053,
+  "MaxDD": -0.5255585947031325,
+  "Time invested": 1.0,
+  "Switches/yr": 0.03488372093023256
+ },
+ "n_trials": 25,
+ "election_feature_note": "The policy block contains the only election feature available historically (a post-midterm dummy). Deviations from pre-election expectations need archived prediction-market or poll data, which this project does not have."
+}

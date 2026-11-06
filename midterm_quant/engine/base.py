@@ -10,6 +10,7 @@ are causal by construction (there is no vectorised look-ahead to get wrong).
 """
 from __future__ import annotations
 
+import copy
 import datetime as dt
 import math
 
@@ -31,8 +32,17 @@ class FractionalPercentCommission(bt.CommInfoBase):
         ("interest_long", False),
     )
 
+    def __init__(self):
+        super().__init__()
+        self.borrow_paid = 0.0   # cumulative short-borrow interest charged by the broker
+
     def getsize(self, price, cash):
         return self.p.leverage * (cash / price)
+
+    def get_credit_interest(self, data, pos, dt):
+        v = super().get_credit_interest(data, pos, dt)
+        self.borrow_paid += v
+        return v
 
 
 class TargetWeightStrategy(bt.Strategy):
@@ -50,6 +60,11 @@ class TargetWeightStrategy(bt.Strategy):
     MAX_GROSS = 1.0             # sum |w|
     MAX_LONG = 0.98             # sum of long weights (cash buffer for overnight gaps)
     THESIS = ""                 # one-line link to the midterm analysis
+    # Evidence bookkeeping (see docs/05_specifications.md). Every result in this library is
+    # from data seen during development; EVIDENCE says how much the rule was shaped by it.
+    VERSION = "v1"
+    EVIDENCE = "D1"             # D1 pre-specified | D2 revised after results | D3 in-sample research
+    PROVENANCE = "Rule and parameters written before the first backtest run (4 Nov 2026), by a researcher who knew the historical record."
 
     params = (
         ("inception", None),     # {name: bar index of first real observation} (runner)
@@ -64,7 +79,11 @@ class TargetWeightStrategy(bt.Strategy):
         self._tradeables = [self._by_name[n] for n in self.ASSETS]
         self._last_period = None
         self.periods = 365 if self.CALENDAR == "crypto" else 252
-        self.records = []            # (date, value, gross, net)
+        self.records = []            # (date, value, cash, gross, net, interest_cum, commission_cum, borrow_cum)
+        self.pos_log = []            # (date, {asset: weight})
+        self.orders_log = []         # one dict per order event (fills, rejections)
+        self.interest_cum = 0.0      # T-bill interest credited on idle cash
+        self.commission_cum = 0.0
         self.rebalances = []         # (date, target dict)
         self.last_target: dict = {}
         self.turnover = 0.0          # sum of |filled notional| / equity
@@ -74,13 +93,29 @@ class TargetWeightStrategy(bt.Strategy):
         self._target: dict = {}
         self._retry = False
         self._started = False        # first eligible bar always rebalances
+        self.signal_now = None       # model target evaluated on the final bar (see next())
 
     def notify_order(self, order):
+        if order.status in (order.Completed, order.Margin, order.Rejected, order.Canceled):
+            ex = order.executed
+            self.orders_log.append({
+                "decision_date": bt.num2date(order.created.dt).date().isoformat(),
+                "fill_date": bt.num2date(ex.dt).date().isoformat() if ex.dt else "",
+                "asset": order.data._name,
+                "side": "BUY" if order.isbuy() else "SELL",
+                "status": order.getstatusname(),
+                "size_ordered": float(order.created.size),
+                "size_filled": float(ex.size),
+                "price": float(ex.price) if ex.size else float("nan"),
+                "notional": float(ex.size * ex.price) if ex.size else 0.0,
+                "commission": float(ex.comm),
+            })
         if order.status == order.Completed:
             value = self.broker.getvalue()
             if value > 0:
                 self.turnover += abs(order.executed.size * order.executed.price) / value
             self.n_orders += 1
+            self.commission_cum += float(order.executed.comm)
         elif order.status in (order.Margin, order.Rejected):
             # A buy can bounce when the next open gaps above the close used for sizing;
             # re-run the same target on the next bar (sells have filled by then).
@@ -92,13 +127,19 @@ class TargetWeightStrategy(bt.Strategy):
         self._accrue_cash_yield()
         value = self.broker.getvalue()
         gross = net = 0.0
+        weights = {}
         for d in self._tradeables:
             pos = self.getposition(d).size
             if pos:
                 exp = pos * d.close[0] / value
                 gross += abs(exp)
                 net += exp
-        self.records.append((self.today, value, gross, net))
+                weights[d._name] = exp
+        borrow = sum(self.broker.getcommissioninfo(d).borrow_paid for d in self._tradeables
+                     if isinstance(self.broker.getcommissioninfo(d), FractionalPercentCommission))
+        self.records.append((self.today, value, self.broker.getcash(), gross, net,
+                             self.interest_cum, self.commission_cum, borrow))
+        self.pos_log.append((self.today, weights))
 
         new_period = self._is_new_period()
         if len(self) < self.WARMUP:
@@ -109,12 +150,30 @@ class TargetWeightStrategy(bt.Strategy):
             if self._retry:
                 self._retry = False
                 self.rebalance(self._target, record=False)
+            self._snapshot_signal(None, rebalanced=False)
             return
         self._retry = False
         self._started = True
         target = self.target_weights()
         if target is not None:
             self.rebalance(target)
+        self._snapshot_signal(target, rebalanced=True)
+
+    def _is_last_bar(self) -> bool:
+        d = self.datas[0]
+        return len(d) >= d.buflen()
+
+    def _snapshot_signal(self, target, rebalanced: bool) -> None:
+        """On the final bar, record what the model wants now, without disturbing its state."""
+        if not self._is_last_bar():
+            return
+        if rebalanced:
+            self.signal_now = {"target": None if target is None else self._sanitize(target), "computed_on_rebalance": True}
+            return
+        saved = copy.deepcopy(self.state)
+        t = self.target_weights()
+        self.state = saved
+        self.signal_now = {"target": None if t is None else self._sanitize(t), "computed_on_rebalance": False}
 
     # ---- to implement ----------------------------------------------------------
     def target_weights(self) -> dict | None:
@@ -175,7 +234,9 @@ class TargetWeightStrategy(bt.Strategy):
         )
         idle = self.broker.getcash() - short_proceeds
         if idle > 0:
-            self.broker.add_cash(idle * rate / self.periods)
+            amount = idle * rate / self.periods
+            self.broker.add_cash(amount)
+            self.interest_cum += amount
 
     def _sanitize(self, target: dict) -> dict:
         w = {k: float(v) for k, v in target.items() if k in self.ASSETS and v is not None and math.isfinite(v)}

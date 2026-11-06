@@ -31,6 +31,12 @@ class BacktestResult:
     n_orders: int
     rejected: int
     rebalances: list = field(repr=False, default_factory=list)
+    ledger: dict = field(repr=False, default_factory=dict)   # nav, positions, targets, orders
+    version: str = "v1"
+    evidence: str = "D1"
+    signal_now: dict | None = None      # model target on the final bar (None target = "hold")
+    input_last: dict = field(default_factory=dict)   # series -> last date with a real value
+    rf: pd.Series | None = field(repr=False, default=None)
 
     def summary_row(self) -> dict:
         m, b = self.metrics, self.bench_metrics
@@ -58,10 +64,11 @@ def required_series(cls: type[TargetWeightStrategy]) -> list[str]:
     return list(dict.fromkeys(list(cls.ASSETS) + list(cls.SIGNALS) + [CASH_RATE, cls.BENCHMARK]))
 
 
-def load_panel_for(cls: type[TargetWeightStrategy], start=None, end=None) -> Panel:
+def load_panel_for(cls: type[TargetWeightStrategy], start=None, end=None, vintages: bool = True) -> Panel:
     start = pd.Timestamp(start or cls.START)
+    end = end or config.BACKTEST_END
     lead = int(cls.WARMUP * (1.05 if cls.CALENDAR == "crypto" else 1.5)) + 15
-    return build_panel(required_series(cls), cls.CALENDAR, start - pd.Timedelta(days=lead), end)
+    return build_panel(required_series(cls), cls.CALENDAR, start - pd.Timedelta(days=lead), end, vintages=vintages)
 
 
 def run_backtest(
@@ -70,10 +77,12 @@ def run_backtest(
     end=None,
     cash: float = 1_000_000.0,
     panel: Panel | None = None,
+    vintages: bool = True,
     **params,
 ) -> BacktestResult:
     start = pd.Timestamp(start or cls.START)
-    panel = panel or load_panel_for(cls, start, end)
+    end = end or config.BACKTEST_END
+    panel = panel or load_panel_for(cls, start, end, vintages=vintages)
     names = required_series(cls)
 
     cerebro = bt.Cerebro(stdstats=False)
@@ -89,11 +98,17 @@ def run_backtest(
     cerebro.addstrategy(cls, inception=inception_idx, trade_start=start.date(), **params)
     strat: TargetWeightStrategy = cerebro.run(runonce=False, preload=True)[0]
 
-    rec = pd.DataFrame(strat.records, columns=["date", "value", "gross", "net"])
+    rec = pd.DataFrame(strat.records, columns=["date", "value", "cash", "gross", "net",
+                                               "interest_cum", "commission_cum", "borrow_cum"])
     rec["date"] = pd.to_datetime(rec["date"])
     rec = rec.set_index("date")
     first_bar = max(start, panel.calendar[min(cls.WARMUP - 1, len(panel.calendar) - 1)])
     rec = rec[rec.index >= first_bar]
+    pos = pd.DataFrame({pd.Timestamp(d): w for d, w in strat.pos_log}).T.reindex(columns=list(cls.ASSETS)).fillna(0.0)
+    pos = pos[pos.index >= first_bar]
+    targets = pd.DataFrame([{"date": d.isoformat(), "asset": a, "target_weight": w}
+                            for d, t in strat.rebalances for a, w in (t.items() or [("CASH", 1.0)])])
+    orders = pd.DataFrame(strat.orders_log)
     equity = rec["value"] / rec["value"].iloc[0]
     bench = panel.close(cls.BENCHMARK).reindex(rec.index)
     bench = bench / bench.iloc[0]
@@ -117,4 +132,10 @@ def run_backtest(
         n_orders=strat.n_orders,
         rejected=strat.rejected,
         rebalances=strat.rebalances,
+        ledger={"nav": rec, "positions": pos, "targets": targets, "orders": orders, "cash0": cash},
+        version=getattr(cls, "VERSION", "v1"),
+        evidence=getattr(cls, "EVIDENCE", "D1"),
+        signal_now=strat.signal_now,
+        input_last={n: (panel.last_real.get(n).date().isoformat() if panel.last_real.get(n) is not None else None) for n in names},
+        rf=rf,
     )

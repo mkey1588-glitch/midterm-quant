@@ -5,10 +5,22 @@
 
 Every series is cached as CSV under ``config.CACHE_DIR``; a cached file younger than
 ``max_age_hours`` is reused so repeated backtests are offline and deterministic.
+
+Provenance. Each download also writes ``<file>.meta.json`` (URL, UTC retrieval time, SHA-256,
+row count, first and last observation) and, when the content changed, an immutable copy
+under ``vintages/<kind>/<name>/<retrieved_at>.csv``. Snapshots are never overwritten, so a
+later revision of a series cannot silently replace what was known earlier.
+
+ALFRED. ``fetch_fred_vintage`` returns a FRED series exactly as it was published on a past
+date (St. Louis Fed's archival service; no API key needed for the CSV endpoint).
 """
 from __future__ import annotations
 
+import datetime as dt
+import hashlib
 import io
+import json
+import shutil
 import time
 import urllib.parse
 import warnings
@@ -33,7 +45,52 @@ def _cache_path(kind: str, name: str) -> Path:
     return p
 
 
+def _sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def meta_path(path: Path) -> Path:
+    return path.with_suffix(".meta.json")
+
+
+def _record(path: Path, kind: str, name: str, url: str, index: pd.Index, vintage_id: str) -> None:
+    """Write the provenance sidecar and keep an immutable snapshot of changed content."""
+    now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
+    sha = _sha256(path)
+    info = {
+        "name": name, "kind": kind, "url": url, "retrieved_at_utc": now.isoformat(),
+        "sha256": sha, "bytes": path.stat().st_size, "rows": int(len(index)),
+        "first_obs": index.min().date().isoformat() if len(index) else None,
+        "last_obs": index.max().date().isoformat() if len(index) else None,
+        "vintage_id": vintage_id or f"latest@{now.isoformat()}",
+    }
+    meta_path(path).write_text(json.dumps(info, indent=1))
+    vdir = config.CACHE_DIR / "vintages" / kind / path.stem
+    vdir.mkdir(parents=True, exist_ok=True)
+    prior = sorted(vdir.glob("*.csv"))
+    if not prior or _sha256(prior[-1]) != sha:
+        shutil.copy2(path, vdir / f"{now.strftime('%Y%m%dT%H%M%SZ')}.csv")
+
+
+def read_meta(path: Path) -> dict:
+    mp = meta_path(path)
+    if mp.exists():
+        return json.loads(mp.read_text())
+    # cache written before provenance tracking: describe what is on disk, flag the gap
+    return {"retrieved_at_utc": dt.datetime.fromtimestamp(path.stat().st_mtime, dt.timezone.utc).replace(microsecond=0).isoformat(),
+            "sha256": _sha256(path), "bytes": path.stat().st_size, "vintage_id": "unrecorded (pre-provenance cache; mtime used)"}
+
+
 def _fresh(path: Path, max_age_hours: float) -> bool:
+    """A cached file is reused while younger than ``max_age_hours``; MQ_MAX_AGE_HOURS overrides
+    it (``OFFLINE=1 scripts/reproduce.sh`` sets a huge value to freeze the snapshot)."""
+    import os
+
+    max_age_hours = float(os.environ.get("MQ_MAX_AGE_HOURS", max_age_hours))
     return path.exists() and (time.time() - path.stat().st_mtime) < max_age_hours * 3600
 
 
@@ -93,6 +150,7 @@ def fetch_yahoo(symbol: str, max_age_hours: float = 20.0, refresh: bool = False)
     df["volume"] = df["volume"].fillna(0.0)
     df.index.name = "date"
     df.to_csv(path)
+    _record(path, "yahoo", symbol, _YAHOO.format(sym=urllib.parse.quote(symbol)), df.index, "")
     time.sleep(0.25)  # be polite to the endpoint
     return df
 
@@ -110,6 +168,36 @@ def fetch_fred(series_id: str, max_age_hours: float = 20.0, refresh: bool = Fals
     df["date"] = pd.to_datetime(df["date"])
     s = pd.to_numeric(df.set_index("date")[series_id], errors="coerce").dropna()
     s.to_frame().to_csv(path)
+    _record(path, "fred", series_id, _FRED.format(sid=series_id), s.index, "")
+    return s
+
+
+_ALFRED = "https://alfred.stlouisfed.org/graph/alfredgraph.csv?id={sid}&vintage_date={vd}"
+
+
+def fetch_fred_vintage(series_id: str, vintage_date: str) -> pd.Series:
+    """The series as published on ``vintage_date`` (ALFRED). Cached forever: vintages never change.
+
+    Returns an empty Series when ALFRED holds no vintage that early.
+    """
+    path = _cache_path("alfred", f"{series_id}_{vintage_date}")
+    if path.exists():
+        s = pd.read_csv(path, index_col=0, parse_dates=True).iloc[:, 0]
+        s.name = series_id
+        return s.dropna()
+    url = _ALFRED.format(sid=series_id, vd=vintage_date)
+    r = requests.get(url, headers=_UA, timeout=60)
+    if r.status_code != 200 or not r.text.startswith("observation_date"):
+        s = pd.Series(dtype=float, name=series_id)
+    else:
+        df = pd.read_csv(io.StringIO(r.text))
+        df.columns = ["date", series_id]
+        df["date"] = pd.to_datetime(df["date"])
+        s = pd.to_numeric(df.set_index("date")[series_id], errors="coerce").dropna()
+    s.index.name = "date"
+    s.to_frame().to_csv(path)
+    _record(path, "alfred", f"{series_id}@{vintage_date}", url, s.index, f"ALFRED vintage {vintage_date}")
+    time.sleep(0.2)
     return s
 
 
@@ -129,4 +217,5 @@ def fetch_stablecoin_supply(max_age_hours: float = 20.0, refresh: bool = False) 
         name="stablecoins",
     ).dropna().sort_index()
     s.to_frame().to_csv(path)
+    _record(path, "defillama", "stablecoins", _LLAMA_STABLES, s.index, "")
     return s

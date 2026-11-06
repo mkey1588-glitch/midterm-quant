@@ -1,0 +1,1610 @@
+{
+ "asof": "2026-11-05",
+ "generated_utc": "2026-11-06T05:30:25+00:00",
+ "original_33": [
+  "M1",
+  "M2",
+  "M3",
+  "M4",
+  "M5",
+  "M6",
+  "M7",
+  "M8",
+  "M9",
+  "M10",
+  "E-a",
+  "E-b",
+  "E-c",
+  "E-d",
+  "E-e",
+  "E-f",
+  "E-g",
+  "C-a",
+  "C-b",
+  "C-c",
+  "C-d",
+  "C-e",
+  "C-f",
+  "N-a",
+  "N-b",
+  "N-c",
+  "N-d",
+  "N-e",
+  "P-a",
+  "P-b",
+  "P-c",
+  "P-d",
+  "P-e"
+ ],
+ "readings": [
+  {
+   "code": "M1",
+   "group": "Macro and policy",
+   "name": "Economic policy uncertainty (30-day average)",
+   "value": "288",
+   "value_num": 288.05766666666665,
+   "context": "z -0.49 vs 3 years",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:USEPUINDXD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T04:53:38+00:00",
+     "vintage": "latest@2026-11-06T04:53:38+00:00",
+     "units": "index (1985-2009 mean = 100)",
+     "source_url": "https://fred.stlouisfed.org/series/USEPUINDXD"
+    }
+   ],
+   "rule": "z > +1.5 STRESS; z < -0.5 CALM",
+   "measures": "Newspaper-based policy-uncertainty index, 30-day mean, z-score vs 3 years",
+   "not_measures": "Not a forecast of policy outcomes; daily counts are revised",
+   "better": "",
+   "extra": {
+    "z": -0.4887694261795328
+   }
+  },
+  {
+   "code": "M2",
+   "group": "Macro and policy",
+   "name": "10-year Treasury yield (FRED DGS10)",
+   "value": "4.90%",
+   "value_num": 4.9,
+   "context": "+27bp in 3 months",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:DGS10",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:55+00:00",
+     "vintage": "latest@2026-11-06T05:07:55+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/DGS10"
+    }
+   ],
+   "rule": "> 5.0% or +50bp in 63 days STRESS",
+   "measures": "Constant-maturity 10-year yield from the H.15 release",
+   "not_measures": "Not CBOE ^TNX, which closes at 15:00 CT and can differ",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M3",
+   "group": "Macro and policy",
+   "name": "10-year term premium (Kim-Wright)",
+   "value": "0.93%",
+   "value_num": 0.932,
+   "context": "3-month change z +0.23",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-10-29",
+   "age_days": 7,
+   "inputs": [
+    {
+     "series": "fred:THREEFYTP10",
+     "observation_date": "2026-10-29",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T04:53:27+00:00",
+     "vintage": "latest@2026-11-06T04:53:27+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/THREEFYTP10"
+    }
+   ],
+   "rule": "z > +1.5 STRESS",
+   "measures": "Model estimate of the compensation for holding long Treasuries",
+   "not_measures": "A model output, revised when re-estimated; not observable",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M4",
+   "group": "Macro and policy",
+   "name": "2-year yield minus effective fed funds",
+   "value": "+70bp",
+   "value_num": 70.00000000000001,
+   "context": "effective fed funds 3.88%",
+   "regime": "HIGHER RATES PRICED",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:DGS2",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:54+00:00",
+     "vintage": "latest@2026-11-06T05:13:54+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/DGS2"
+    },
+    {
+     "series": "fred:DFF",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:55+00:00",
+     "vintage": "latest@2026-11-06T05:13:55+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/DFF"
+    }
+   ],
+   "rule": "> +25bp HIGHER RATES PRICED; < -50bp CUTS PRICED",
+   "measures": "Average policy rate the market expects over roughly two years, plus a term premium",
+   "not_measures": "Not a meeting-by-meeting path: use M12 (fed funds futures) for that",
+   "better": "M12 fed funds futures path; OIS curve (licensed)",
+   "extra": {}
+  },
+  {
+   "code": "M5",
+   "group": "Macro and policy",
+   "name": "10-year breakeven inflation",
+   "value": "2.26%",
+   "value_num": 2.26,
+   "context": "+4bp in 3 months",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:T10YIE",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:55+00:00",
+     "vintage": "latest@2026-11-06T05:13:55+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/T10YIE"
+    }
+   ],
+   "rule": "> 2.6% STRESS",
+   "measures": "DGS10 minus the 10-year TIPS yield",
+   "not_measures": "Includes inflation risk and TIPS liquidity premia, not pure expected inflation",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M6",
+   "group": "Macro and policy",
+   "name": "10-year real yield (TIPS)",
+   "value": "2.64%",
+   "value_num": 2.64,
+   "context": "+23bp in 3 months",
+   "regime": "HEADWIND",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:DFII10",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T04:54:44+00:00",
+     "vintage": "latest@2026-11-06T04:54:44+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/DFII10"
+    }
+   ],
+   "rule": "> 2.5% and rising: gold HEADWIND",
+   "measures": "10-year TIPS constant-maturity yield",
+   "not_measures": "Opportunity cost of gold, one of several drivers since 2022",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M7",
+   "group": "Macro and policy",
+   "name": "Broad trade-weighted dollar",
+   "value": "121.7",
+   "value_num": 0.017974173361606782,
+   "context": "+1.8% vs 200-day",
+   "regime": "STRONG USD",
+   "tone": "watch",
+   "status": "OK",
+   "observation_date": "2026-10-30",
+   "age_days": 6,
+   "inputs": [
+    {
+     "series": "fred:DTWEXBGS",
+     "observation_date": "2026-10-30",
+     "available_at": "2026-11-03",
+     "retrieved_at": "2026-11-06T04:53:20+00:00",
+     "vintage": "latest@2026-11-06T04:53:20+00:00",
+     "units": "index (Jan 2006 = 100)",
+     "source_url": "https://fred.stlouisfed.org/series/DTWEXBGS"
+    }
+   ],
+   "rule": "above SMA200 STRONG USD",
+   "measures": "Fed nominal broad dollar index vs its 200-day mean",
+   "not_measures": "Published weekly; history revised with trade weights",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M8",
+   "group": "Macro and policy",
+   "name": "4-week minus 3-month bill yield",
+   "value": "-18bp",
+   "value_num": -18.000000000000014,
+   "context": "1-month vs 3-month bills",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:DTB4WK",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:55+00:00",
+     "vintage": "latest@2026-11-06T05:13:55+00:00",
+     "units": "percent per year, discount basis",
+     "source_url": "https://fred.stlouisfed.org/series/DTB4WK"
+    },
+    {
+     "series": "fred:DTB3",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T04:54:49+00:00",
+     "vintage": "latest@2026-11-06T04:54:49+00:00",
+     "units": "percent per year, discount basis",
+     "source_url": "https://fred.stlouisfed.org/series/DTB3"
+    }
+   ],
+   "rule": "> +15bp X-DATE STRESS",
+   "measures": "Kink at the front of the bill curve",
+   "not_measures": "A debt-limit X-date gauge only when an X-date is near",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M9",
+   "group": "Macro and policy",
+   "name": "Fed net liquidity (same-Wednesday basis)",
+   "value": "$5,730bn",
+   "value_num": -35.344999999999345,
+   "context": "-35bn over 13 weeks; TGA $1,016bn",
+   "regime": "DRAINING",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-10-28",
+   "age_days": 8,
+   "inputs": [
+    {
+     "series": "fred:WALCL",
+     "observation_date": "2026-10-28",
+     "available_at": "2026-10-30",
+     "retrieved_at": "2026-11-06T04:53:59+00:00",
+     "vintage": "latest@2026-11-06T04:53:59+00:00",
+     "units": "USD millions, Wednesday level",
+     "source_url": "https://fred.stlouisfed.org/series/WALCL"
+    },
+    {
+     "series": "fred:WDTGAL",
+     "observation_date": "2026-10-28",
+     "available_at": "2026-10-30",
+     "retrieved_at": "2026-11-06T04:54:05+00:00",
+     "vintage": "latest@2026-11-06T04:54:05+00:00",
+     "units": "USD millions, Wednesday level",
+     "source_url": "https://fred.stlouisfed.org/series/WDTGAL"
+    },
+    {
+     "series": "fred:RRPONTSYD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T04:54:21+00:00",
+     "vintage": "latest@2026-11-06T04:54:21+00:00",
+     "units": "USD billions",
+     "source_url": "https://fred.stlouisfed.org/series/RRPONTSYD"
+    }
+   ],
+   "rule": "13-week change > 0 EXPANDING, < 0 DRAINING",
+   "measures": "Fed total assets minus the Treasury's cash account minus overnight reverse repo, all on the same Wednesday, USD billions",
+   "not_measures": "An accounting identity for reserves-plus; its link to asset prices is empirical, not causal",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M10",
+   "group": "Macro and policy",
+   "name": "Credit risk-appetite proxy: HYG vs IEF",
+   "value": "-2.15z",
+   "value_num": -2.149653580175428,
+   "context": "high-yield ETF vs Treasuries",
+   "regime": "STRESS",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "HYG",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:54+00:00",
+     "vintage": "latest@2026-11-06T05:13:54+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HYG"
+    },
+    {
+     "series": "IEF",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:42+00:00",
+     "vintage": "latest@2026-11-06T05:13:42+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IEF"
+    }
+   ],
+   "rule": "z < -1.5 STRESS",
+   "measures": "20-day change in log(HYG/IEF), z vs 500 days: high-yield bond ETF against intermediate Treasuries",
+   "not_measures": "Not a credit spread and not a 'credit impulse' (the change in credit growth); ETF prices mix spread, duration and flows",
+   "better": "M11 high-yield option-adjusted spread",
+   "extra": {}
+  },
+  {
+   "code": "M11",
+   "group": "Macro and policy",
+   "name": "High-yield option-adjusted spread (ICE BofA)",
+   "value": "332bp",
+   "value_num": 3.32,
+   "context": "+62bp in 3 months",
+   "regime": "CALM",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "fred:BAMLH0A0HYM2",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:40+00:00",
+     "vintage": "latest@2026-11-06T05:16:40+00:00",
+     "units": "percentage points",
+     "source_url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2"
+    }
+   ],
+   "rule": ">= 5.0pp or +1.0pp in 63 days STRESS; >= 4.0pp WATCH",
+   "measures": "Spread of US high-yield bonds over Treasuries, option-adjusted",
+   "not_measures": "FRED shows only the latest 3 years under ICE's licence",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "M12",
+   "group": "Macro and policy",
+   "name": "Fed funds futures: implied policy path",
+   "value": "+38bp by Jun 2027",
+   "value_num": 38.499938964843764,
+   "context": "effective 3.88%; Dec-26 4.00%, Feb-27 4.08%, Apr-27 4.18%, Jun-27 4.26%",
+   "regime": "HIKES PRICED",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "ZQX26.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:41+00:00",
+     "vintage": "latest@2026-11-06T05:16:41+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQX26.CBT"
+    },
+    {
+     "series": "ZQZ26.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:41+00:00",
+     "vintage": "latest@2026-11-06T05:16:41+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQZ26.CBT"
+    },
+    {
+     "series": "ZQF27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:42+00:00",
+     "vintage": "latest@2026-11-06T05:16:42+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQF27.CBT"
+    },
+    {
+     "series": "ZQG27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:42+00:00",
+     "vintage": "latest@2026-11-06T05:16:42+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQG27.CBT"
+    },
+    {
+     "series": "ZQH27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:43+00:00",
+     "vintage": "latest@2026-11-06T05:16:43+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQH27.CBT"
+    },
+    {
+     "series": "ZQJ27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:44+00:00",
+     "vintage": "latest@2026-11-06T05:16:44+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQJ27.CBT"
+    },
+    {
+     "series": "ZQK27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:44+00:00",
+     "vintage": "latest@2026-11-06T05:16:44+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQK27.CBT"
+    },
+    {
+     "series": "ZQM27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:45+00:00",
+     "vintage": "latest@2026-11-06T05:16:45+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQM27.CBT"
+    },
+    {
+     "series": "ZQN27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:45+00:00",
+     "vintage": "latest@2026-11-06T05:16:45+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQN27.CBT"
+    },
+    {
+     "series": "ZQQ27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:46+00:00",
+     "vintage": "latest@2026-11-06T05:16:46+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQQ27.CBT"
+    },
+    {
+     "series": "ZQU27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:46+00:00",
+     "vintage": "latest@2026-11-06T05:16:46+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQU27.CBT"
+    },
+    {
+     "series": "ZQV27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:47+00:00",
+     "vintage": "latest@2026-11-06T05:16:47+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQV27.CBT"
+    },
+    {
+     "series": "ZQX27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:47+00:00",
+     "vintage": "latest@2026-11-06T05:16:47+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQX27.CBT"
+    },
+    {
+     "series": "ZQZ27.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:48+00:00",
+     "vintage": "latest@2026-11-06T05:16:48+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQZ27.CBT"
+    },
+    {
+     "series": "ZQF28.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:49+00:00",
+     "vintage": "latest@2026-11-06T05:16:49+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQF28.CBT"
+    },
+    {
+     "series": "ZQG28.CBT",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:49+00:00",
+     "vintage": "latest@2026-11-06T05:16:49+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ZQG28.CBT"
+    },
+    {
+     "series": "fred:DFF",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:55+00:00",
+     "vintage": "latest@2026-11-06T05:13:55+00:00",
+     "units": "percent per year",
+     "source_url": "https://fred.stlouisfed.org/series/DFF"
+    }
+   ],
+   "rule": "Jun-27 implied minus effective > +25bp HIKES PRICED; < -25bp CUTS PRICED",
+   "measures": "100 minus each CME 30-day fed funds future = the market's expected average effective rate in that month",
+   "not_measures": "Futures include a small risk premium; monthly averages blur meetings inside a month",
+   "better": "",
+   "extra": {
+    "path": {
+     "Nov-26": 3.877502441406236,
+     "Dec-26": 3.9950027465820455,
+     "Jan-27": 4.050003051757798,
+     "Feb-27": 4.084999084472656,
+     "Mar-27": 4.1299972534179545,
+     "Apr-27": 4.184997558593764,
+     "May-27": 4.220001220703125,
+     "Jun-27": 4.2649993896484375,
+     "Jul-27": 4.285003662109375,
+     "Aug-27": 4.294998168945327,
+     "Sep-27": 4.305000305175781,
+     "Oct-27": 4.309997558593764,
+     "Nov-27": 4.309997558593764,
+     "Dec-27": 4.294998168945327,
+     "Jan-28": 4.285003662109375,
+     "Feb-28": 4.275001525878906
+    }
+   }
+  },
+  {
+   "code": "E-a",
+   "group": "U.S. equities",
+   "name": "S&P 500 trend",
+   "value": "7,354",
+   "value_num": 0.004232607702004509,
+   "context": "+0.4% vs 200-day; -5.9% from 1-year high",
+   "regime": "RISK-ON",
+   "tone": "supportive",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "^GSPC",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:04:19+00:00",
+     "vintage": "latest@2026-11-06T05:04:19+00:00",
+     "units": "index points (price index, no dividends)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/^GSPC"
+    }
+   ],
+   "rule": "below SMA200 RISK-OFF",
+   "measures": "Index level vs its 200-day average; drawdown from the 252-day high",
+   "not_measures": "Price index only, no dividends",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "E-b",
+   "group": "U.S. equities",
+   "name": "VIX term structure",
+   "value": "28.2",
+   "value_num": 1.1029354656222607,
+   "context": "VIX/VIX3M 1.10",
+   "regime": "STRESS",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "^VIX",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:47+00:00",
+     "vintage": "latest@2026-11-06T05:13:47+00:00",
+     "units": "index points (price index, no dividends)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/^VIX"
+    },
+    {
+     "series": "^VIX3M",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:47+00:00",
+     "vintage": "latest@2026-11-06T05:13:47+00:00",
+     "units": "index points (price index, no dividends)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/^VIX3M"
+    }
+   ],
+   "rule": "> 1.0 STRESS; < 0.9 CALM",
+   "measures": "Ratio of 30-day to 3-month implied volatility",
+   "not_measures": "Implied, not realised, volatility",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "E-c",
+   "group": "U.S. equities",
+   "name": "Breadth: equal-weight vs cap-weight",
+   "value": "+3.9%",
+   "value_num": 0.03878499390872381,
+   "context": "equal- minus cap-weight, 63 days",
+   "regime": "BROADENING",
+   "tone": "supportive",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "RSP",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:48+00:00",
+     "vintage": "latest@2026-11-06T05:13:48+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RSP"
+    },
+    {
+     "series": "SPY",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:54+00:00",
+     "vintage": "latest@2026-11-06T05:07:54+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    }
+   ],
+   "rule": "> 0 BROADENING",
+   "measures": "63-day return of RSP minus SPY",
+   "not_measures": "Relative performance, not the share of stocks rising",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "E-d",
+   "group": "U.S. equities",
+   "name": "Small caps vs large caps",
+   "value": "-4.9%",
+   "value_num": -0.04934767980101906,
+   "context": "small minus large, 63 days",
+   "regime": "NARROW",
+   "tone": "watch",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "IWM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:49+00:00",
+     "vintage": "latest@2026-11-06T05:13:49+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IWM"
+    },
+    {
+     "series": "SPY",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:54+00:00",
+     "vintage": "latest@2026-11-06T05:07:54+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    }
+   ],
+   "rule": "> 0 BROADENING",
+   "measures": "63-day return of IWM minus SPY",
+   "not_measures": "Relative performance only",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "E-e",
+   "group": "U.S. equities",
+   "name": "Semiconductor relative strength: SMH vs SPY",
+   "value": "-18.2%",
+   "value_num": -0.18191724293475775,
+   "context": "semiconductors minus market, 63 days",
+   "regime": "SEMIS LAGGING",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "SMH",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:42+00:00",
+     "vintage": "latest@2026-11-06T05:13:42+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SMH"
+    },
+    {
+     "series": "SPY",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:54+00:00",
+     "vintage": "latest@2026-11-06T05:07:54+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    }
+   ],
+   "rule": "< -5% SEMIS LAGGING",
+   "measures": "63-day return of the semiconductor ETF minus the S&P 500",
+   "not_measures": "Not a measure of AI regulation risk: semis move on earnings, capex, export controls, rates and positioning",
+   "better": "Event-dated basket of data-centre names around dated regulatory actions (not built: needs a curated event list)",
+   "extra": {}
+  },
+  {
+   "code": "E-f",
+   "group": "U.S. equities",
+   "name": "Policy-sensitive sector baskets vs SPY",
+   "value": "leader: health care",
+   "value_num": 0.17004994794988904,
+   "context": "defence -13%, health care +17%, solar -11%, regional banks +0%, energy +13%",
+   "regime": "INFO",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "ITA",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:38+00:00",
+     "vintage": "latest@2026-11-06T05:13:38+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ITA"
+    },
+    {
+     "series": "SPY",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:54+00:00",
+     "vintage": "latest@2026-11-06T05:07:54+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    },
+    {
+     "series": "XLV",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:36+00:00",
+     "vintage": "latest@2026-11-06T05:13:36+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLV"
+    },
+    {
+     "series": "TAN",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:41+00:00",
+     "vintage": "latest@2026-11-06T05:13:41+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TAN"
+    },
+    {
+     "series": "KRE",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:39+00:00",
+     "vintage": "latest@2026-11-06T05:13:39+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KRE"
+    },
+    {
+     "series": "XLE",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:31+00:00",
+     "vintage": "latest@2026-11-06T05:13:31+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE"
+    }
+   ],
+   "rule": "informational",
+   "measures": "63-day relative returns of defence, health care, solar, regional banks, energy ETFs",
+   "not_measures": "Sector moves have many causes; this flags where prices moved, not why",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "E-g",
+   "group": "U.S. equities",
+   "name": "Midterm seasonal window and election clock",
+   "value": "window day 35",
+   "value_num": 35.0,
+   "context": "trading day 2 after election day 03 Nov 2026; window opened 01 Oct 2026",
+   "regime": "IN WINDOW",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "^GSPC",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:04:19+00:00",
+     "vintage": "latest@2026-11-06T05:04:19+00:00",
+     "units": "index points (price index, no dividends)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/^GSPC"
+    }
+   ],
+   "rule": "1 Oct midterm year - 31 Dec pre-election year IN WINDOW",
+   "measures": "Two separate clocks: days since the seasonal window opened (1 Oct of the midterm year) and trading days since election day",
+   "not_measures": "The seasonal window is a calendar rule, not an election effect; its start predates the election",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "C-a",
+   "group": "Crypto",
+   "name": "Bitcoin Mayer multiple",
+   "value": "1.10",
+   "value_num": 1.098718019666788,
+   "context": "BTC $80,405 (UTC bar 04 Nov), -24% from 1-year high",
+   "regime": "UPTREND",
+   "tone": "stale",
+   "status": "STALE",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "BTC-USD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:27+00:00",
+     "vintage": "latest@2026-11-06T05:17:27+00:00",
+     "units": "USD per coin",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD"
+    }
+   ],
+   "rule": "< 0.8 DEEP VALUE; > 2.4 EUPHORIC; else above/below 1",
+   "measures": "BTC price / 200-day average, completed UTC daily bars only",
+   "not_measures": "Not a valuation model",
+   "better": "",
+   "extra": {
+    "data_notes": [
+     "BTC-USD: source has no completed bar for 2026-11-05; last bar 2026-11-04"
+    ]
+   }
+  },
+  {
+   "code": "C-b",
+   "group": "Crypto",
+   "name": "Bitcoin 30-day realised volatility",
+   "value": "32%",
+   "value_num": 0.3224008143410346,
+   "context": "annualised",
+   "regime": "NEUTRAL",
+   "tone": "stale",
+   "status": "STALE",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "BTC-USD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:27+00:00",
+     "vintage": "latest@2026-11-06T05:17:27+00:00",
+     "units": "USD per coin",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD"
+    }
+   ],
+   "rule": "> 70% STRESS",
+   "measures": "Annualised (365) stdev of daily log returns, UTC bars",
+   "not_measures": "Realised, not implied",
+   "better": "",
+   "extra": {
+    "data_notes": [
+     "BTC-USD: source has no completed bar for 2026-11-05; last bar 2026-11-04"
+    ]
+   }
+  },
+  {
+   "code": "C-c",
+   "group": "Crypto",
+   "name": "ETH/BTC ratio",
+   "value": "0.0301",
+   "value_num": 0.017833601816385825,
+   "context": "+2% in 90 days",
+   "regime": "BTC DOMINANCE",
+   "tone": "stale",
+   "status": "STALE",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "ETH-USD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:27+00:00",
+     "vintage": "latest@2026-11-06T05:17:27+00:00",
+     "units": "USD per coin",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ETH-USD"
+    },
+    {
+     "series": "BTC-USD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:27+00:00",
+     "vintage": "latest@2026-11-06T05:17:27+00:00",
+     "units": "USD per coin",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD"
+    }
+   ],
+   "rule": "> +10% ALT-SEASON",
+   "measures": "Ether priced in bitcoin, 90-day change",
+   "not_measures": "Relative performance only",
+   "better": "",
+   "extra": {
+    "data_notes": [
+     "ETH-USD: source has no completed bar for 2026-11-05; last bar 2026-11-04",
+     "BTC-USD: source has no completed bar for 2026-11-05; last bar 2026-11-04"
+    ]
+   }
+  },
+  {
+   "code": "C-d",
+   "group": "Crypto",
+   "name": "Crypto equity vs bitcoin: COIN vs BTC",
+   "value": "-20.9%",
+   "value_num": -0.2093267429957908,
+   "context": "Coinbase minus bitcoin, 63 days",
+   "regime": "CRYPTO EQUITY LAGS",
+   "tone": "stale",
+   "status": "STALE",
+   "observation_date": "2026-11-04",
+   "age_days": 1,
+   "inputs": [
+    {
+     "series": "COIN",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:50+00:00",
+     "vintage": "latest@2026-11-06T05:16:50+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COIN"
+    },
+    {
+     "series": "BTC-USD",
+     "observation_date": "2026-11-04",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:27+00:00",
+     "vintage": "latest@2026-11-06T05:17:27+00:00",
+     "units": "USD per coin",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD"
+    }
+   ],
+   "rule": "< -10% CRYPTO EQUITY LAGS",
+   "measures": "63-day return of Coinbase shares minus bitcoin",
+   "not_measures": "Not a clean U.S. regulatory sentiment index: mixes company earnings, equity beta and regulation; COIN trades 09:30-16:00 ET, BTC 24/7",
+   "better": "Event study of COIN/BTC around dated SEC/CFTC/congressional actions (needs a curated event list)",
+   "extra": {
+    "data_notes": [
+     "BTC-USD: source has no completed bar for 2026-11-05; last bar 2026-11-04"
+    ]
+   }
+  },
+  {
+   "code": "C-e",
+   "group": "Crypto",
+   "name": "Stablecoin supply: level and 30-day growth",
+   "value": "$295bn",
+   "value_num": -0.042953331115944904,
+   "context": "30 days -4.3% (-13bn)",
+   "regime": "OUTFLOW",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "llama:stablecoins",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-06",
+     "retrieved_at": "2026-11-06T05:14:40+00:00",
+     "vintage": "latest@2026-11-06T05:14:40+00:00",
+     "units": "USD",
+     "source_url": "https://stablecoins.llama.fi/stablecoincharts/all"
+    }
+   ],
+   "rule": "30-day growth > 0 INFLOW",
+   "measures": "Total USD-pegged stablecoins (DefiLlama), level and 30-day change",
+   "not_measures": "History is restated by the source; past growth rates are not point-in-time",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "C-f",
+   "group": "Crypto",
+   "name": "Halving-cycle clock",
+   "value": "ACCUMULATION",
+   "value_num": 527.0,
+   "context": "527 days to the estimated halving",
+   "regime": "INFO",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": null,
+   "age_days": null,
+   "inputs": [],
+   "rule": "phase by days since halving (in-sample boundaries)",
+   "measures": "Days since the last halving and to the estimated next one",
+   "not_measures": "The next halving date is an estimate from block times; the phase labels are in-sample (see C3)",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "N-a",
+   "group": "Energy",
+   "name": "Brent minus WTI (front-month futures)",
+   "value": "$7.8",
+   "value_num": 7.7700042724609375,
+   "context": "Brent $98.3, WTI $90.5; Brent +18% in 3 months",
+   "regime": "WIDE",
+   "tone": "watch",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "BZ=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:07:55+00:00",
+     "vintage": "latest@2026-11-06T05:07:55+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BZ=F"
+    },
+    {
+     "series": "CL=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:40+00:00",
+     "vintage": "latest@2026-11-06T05:13:40+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CL=F"
+    }
+   ],
+   "rule": "> $6 WIDE",
+   "measures": "Brent minus WTI continuous front-month futures, USD per barrel",
+   "not_measures": "Not a pure war-risk premium: includes crude quality, location, freight, pipeline and contract-roll timing",
+   "better": "Freight-adjusted spread and tanker-insurance rates (licensed)",
+   "extra": {}
+  },
+  {
+   "code": "N-b",
+   "group": "Energy",
+   "name": "Oil-fund roll proxy: USO vs USL",
+   "value": "+6.2%",
+   "value_num": 0.062091457165244446,
+   "context": "front-month fund minus 12-month strip, 63 days",
+   "regime": "FRONT OUTPERFORMING",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "USO",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:56+00:00",
+     "vintage": "latest@2026-11-06T05:13:56+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/USO"
+    },
+    {
+     "series": "USL",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:14:02+00:00",
+     "vintage": "latest@2026-11-06T05:14:02+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/USL"
+    }
+   ],
+   "rule": "> 0 FRONT OUTPERFORMING",
+   "measures": "63-day return of a front-month oil fund minus a 12-month-strip fund",
+   "not_measures": "Not the futures curve: fund returns include roll timing, costs and USO's 2020 restructuring",
+   "better": "N-f actual WTI contract curve",
+   "extra": {}
+  },
+  {
+   "code": "N-f",
+   "group": "Energy",
+   "name": "WTI futures curve: 1st vs 12th contract",
+   "value": "+$15.41",
+   "value_num": 15.409996032714844,
+   "context": "CLZ26 $90.52 vs CLX27 $75.11 (+17.0%)",
+   "regime": "BACKWARDATION",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "CLZ26.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:51+00:00",
+     "vintage": "latest@2026-11-06T05:16:51+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLZ26.NYM"
+    },
+    {
+     "series": "CLF27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:52+00:00",
+     "vintage": "latest@2026-11-06T05:16:52+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLF27.NYM"
+    },
+    {
+     "series": "CLG27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:53+00:00",
+     "vintage": "latest@2026-11-06T05:16:53+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLG27.NYM"
+    },
+    {
+     "series": "CLH27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:53+00:00",
+     "vintage": "latest@2026-11-06T05:16:53+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLH27.NYM"
+    },
+    {
+     "series": "CLJ27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:54+00:00",
+     "vintage": "latest@2026-11-06T05:16:54+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLJ27.NYM"
+    },
+    {
+     "series": "CLK27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:55+00:00",
+     "vintage": "latest@2026-11-06T05:16:55+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLK27.NYM"
+    },
+    {
+     "series": "CLM27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:55+00:00",
+     "vintage": "latest@2026-11-06T05:16:55+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLM27.NYM"
+    },
+    {
+     "series": "CLN27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:56+00:00",
+     "vintage": "latest@2026-11-06T05:16:56+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLN27.NYM"
+    },
+    {
+     "series": "CLQ27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:57+00:00",
+     "vintage": "latest@2026-11-06T05:16:57+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLQ27.NYM"
+    },
+    {
+     "series": "CLU27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:57+00:00",
+     "vintage": "latest@2026-11-06T05:16:57+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLU27.NYM"
+    },
+    {
+     "series": "CLV27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:58+00:00",
+     "vintage": "latest@2026-11-06T05:16:58+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLV27.NYM"
+    },
+    {
+     "series": "CLX27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:58+00:00",
+     "vintage": "latest@2026-11-06T05:16:58+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLX27.NYM"
+    },
+    {
+     "series": "CLZ27.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:16:59+00:00",
+     "vintage": "latest@2026-11-06T05:16:59+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLZ27.NYM"
+    },
+    {
+     "series": "CLF28.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:00+00:00",
+     "vintage": "latest@2026-11-06T05:17:00+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLF28.NYM"
+    },
+    {
+     "series": "CLG28.NYM",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:00+00:00",
+     "vintage": "latest@2026-11-06T05:17:00+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CLG28.NYM"
+    }
+   ],
+   "rule": "> 0 BACKWARDATION; < 0 CONTANGO",
+   "measures": "Front WTI contract minus the contract 11 months later (NYMEX CL), USD per barrel",
+   "not_measures": "Only the current curve can be rebuilt from free data; expired contracts are not available",
+   "better": "",
+   "extra": {
+    "curve": {
+     "CLZ26.NYM": 90.5199966430664,
+     "CLF27.NYM": 89.19999694824219,
+     "CLG27.NYM": 87.38999938964844,
+     "CLH27.NYM": 85.44000244140625,
+     "CLJ27.NYM": 83.62999725341797,
+     "CLK27.NYM": 82.05000305175781,
+     "CLM27.NYM": 80.62999725341797,
+     "CLN27.NYM": 79.33000183105469,
+     "CLQ27.NYM": 78.12000274658203,
+     "CLU27.NYM": 77.01000213623047,
+     "CLV27.NYM": 76.0,
+     "CLX27.NYM": 75.11000061035156,
+     "CLZ27.NYM": 74.30999755859375,
+     "CLF28.NYM": 73.58000183105469,
+     "CLG28.NYM": 72.93000030517578
+    }
+   }
+  },
+  {
+   "code": "N-c",
+   "group": "Energy",
+   "name": "U.S. retail gasoline price",
+   "value": "$4.15",
+   "value_num": 4.153,
+   "context": "higher than 87% of the past 2 years",
+   "regime": "AFFORDABILITY PRESSURE",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-02",
+   "age_days": 3,
+   "inputs": [
+    {
+     "series": "fred:GASREGW",
+     "observation_date": "2026-11-02",
+     "available_at": "2026-11-03",
+     "retrieved_at": "2026-11-06T04:54:38+00:00",
+     "vintage": "latest@2026-11-06T04:54:38+00:00",
+     "units": "USD per gallon",
+     "source_url": "https://fred.stlouisfed.org/series/GASREGW"
+    }
+   ],
+   "rule": "> $4.00 or > 70th percentile AFFORDABILITY PRESSURE",
+   "measures": "EIA weekly regular-grade price and its 2-year percentile",
+   "not_measures": "National average; regional prices differ",
+   "better": "",
+   "extra": {
+    "pctile": 0.8737864077669902
+   }
+  },
+  {
+   "code": "N-d",
+   "group": "Energy",
+   "name": "Oil shock detector (USO 20-day return z)",
+   "value": "-0.43",
+   "value_num": -0.42711107560699557,
+   "context": "vs a year of 20-day returns",
+   "regime": "NORMAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "USO",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:56+00:00",
+     "vintage": "latest@2026-11-06T05:13:56+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/USO"
+    }
+   ],
+   "rule": "> +2 SPIKE; < -2 CRASH",
+   "measures": "z of the 20-day log return of USO vs a year of 20-day returns",
+   "not_measures": "Fund returns include roll yield",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "N-e",
+   "group": "Energy",
+   "name": "Clean vs fossil energy equities",
+   "value": "-19.6%",
+   "value_num": -0.1962298833089895,
+   "context": "clean minus fossil, 63 days",
+   "regime": "FOSSIL LEADS",
+   "tone": "info",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "ICLN",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:14:07+00:00",
+     "vintage": "latest@2026-11-06T05:14:07+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ICLN"
+    },
+    {
+     "series": "XLE",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:31+00:00",
+     "vintage": "latest@2026-11-06T05:13:31+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE"
+    }
+   ],
+   "rule": "> 0 CLEAN LEADS",
+   "measures": "63-day return of ICLN minus XLE",
+   "not_measures": "Relative performance; clean energy is also rate-sensitive",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "P-a",
+   "group": "Precious metals",
+   "name": "Gold trend",
+   "value": "$4,114",
+   "value_num": -0.08704286606228195,
+   "context": "-23% from high; -8.7% vs 200-day",
+   "regime": "DOWNTREND",
+   "tone": "alert",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "GC=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:39+00:00",
+     "vintage": "latest@2026-11-06T05:13:39+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC=F"
+    }
+   ],
+   "rule": "below SMA200 DOWNTREND",
+   "measures": "Front-month gold futures vs 200-day average; drawdown from the all-time high",
+   "not_measures": "Continuous front-month series, not roll-adjusted",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "P-b",
+   "group": "Precious metals",
+   "name": "Gold/silver ratio",
+   "value": "78.8",
+   "value_num": 0.04692177483236601,
+   "context": "z +0.05 vs 2 years",
+   "regime": "NEUTRAL",
+   "tone": "neutral",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "GC=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:39+00:00",
+     "vintage": "latest@2026-11-06T05:13:39+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC=F"
+    },
+    {
+     "series": "SI=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:01+00:00",
+     "vintage": "latest@2026-11-06T05:17:01+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SI=F"
+    }
+   ],
+   "rule": "z > +1 SILVER CHEAP; z < -1 SILVER RICH",
+   "measures": "Gold price / silver price, z vs 2 years",
+   "not_measures": "Relative value, not a timing signal by itself",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "P-c",
+   "group": "Precious metals",
+   "name": "Gold/oil price ratio (input-cost proxy)",
+   "value": "45.4",
+   "value_num": -0.14741160233180173,
+   "context": "-15% vs 200-day",
+   "regime": "COST HEADWIND",
+   "tone": "watch",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "GC=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:39+00:00",
+     "vintage": "latest@2026-11-06T05:13:39+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC=F"
+    },
+    {
+     "series": "CL=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:40+00:00",
+     "vintage": "latest@2026-11-06T05:13:40+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CL=F"
+    }
+   ],
+   "rule": "above SMA200 COST TAILWIND",
+   "measures": "Ounces-of-gold-to-barrels ratio vs its 200-day average",
+   "not_measures": "Not a miner margin: energy is one input among labour, royalties, sustaining capex; margins need company all-in sustaining costs",
+   "better": "Company AISC and free cash flow from quarterly filings (not collected: no free structured source)",
+   "extra": {}
+  },
+  {
+   "code": "P-d",
+   "group": "Precious metals",
+   "name": "Miners vs bullion: GDX vs GLD",
+   "value": "+1.2%",
+   "value_num": 0.01161433285628466,
+   "context": "miners minus bullion, 63 days",
+   "regime": "CONFIRMING",
+   "tone": "supportive",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "GDX",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:14:15+00:00",
+     "vintage": "latest@2026-11-06T05:14:15+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GDX"
+    },
+    {
+     "series": "GLD",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:14:11+00:00",
+     "vintage": "latest@2026-11-06T05:14:11+00:00",
+     "units": "price adjusted for splits and dividends (total-return close)",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GLD"
+    }
+   ],
+   "rule": "> 0 CONFIRMING",
+   "measures": "63-day return of gold miners minus gold",
+   "not_measures": "Relative performance",
+   "better": "",
+   "extra": {}
+  },
+  {
+   "code": "P-e",
+   "group": "Precious metals",
+   "name": "Platinum/gold ratio",
+   "value": "0.371",
+   "value_num": -1.32654158902745,
+   "context": "z -1.33 vs 1 year",
+   "regime": "PGM WEAK",
+   "tone": "watch",
+   "status": "OK",
+   "observation_date": "2026-11-05",
+   "age_days": 0,
+   "inputs": [
+    {
+     "series": "PL=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:17:02+00:00",
+     "vintage": "latest@2026-11-06T05:17:02+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PL=F"
+    },
+    {
+     "series": "GC=F",
+     "observation_date": "2026-11-05",
+     "available_at": "2026-11-05",
+     "retrieved_at": "2026-11-06T05:13:39+00:00",
+     "vintage": "latest@2026-11-06T05:13:39+00:00",
+     "units": "USD per contract unit; =F rolls without adjustment",
+     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GC=F"
+    }
+   ],
+   "rule": "z < -1 PGM WEAK",
+   "measures": "Platinum / gold futures, z vs 1 year",
+   "not_measures": "Industrial demand proxy only",
+   "better": "",
+   "extra": {}
+  }
+ ]
+}

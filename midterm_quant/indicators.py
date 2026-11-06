@@ -142,5 +142,14 @@ def ols_beta(y: np.ndarray, x: np.ndarray) -> float:
 
 
 def net_liquidity(walcl_mm: float, tga_mm: float, rrp_bn: float) -> float:
-    """Fed net liquidity in $ millions = balance sheet - TGA - ON RRP (RRP is in $bn)."""
+    """v1 formula, kept to reproduce C2 v1: USD millions = WALCL - TGA - RRP*1000."""
     return walcl_mm - tga_mm - rrp_bn * 1000.0
+
+
+def net_liquidity_bn(walcl_mm, tga_mm, rrp_bn):
+    """Fed net liquidity in USD billions.
+
+    Units: WALCL and WDTGAL are published in USD millions, RRPONTSYD in USD billions.
+    All three must refer to the same Wednesday (WALCL and WDTGAL are Wednesday levels).
+    """
+    return np.asarray(walcl_mm, dtype=float) / 1000.0 - np.asarray(tga_mm, dtype=float) / 1000.0 - np.asarray(rrp_bn, dtype=float)

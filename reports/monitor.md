@@ -1,37 +1,42 @@
-# Observation dashboard (2026-11-06)
+# Observation dashboard as of the 2026-11-05 close
 
-| Group | Code | Indicator | Value | Context | Read | Rule |
-|---|---|---|---|---|---|---|
-| Macro/Policy | M1 | Economic Policy Uncertainty (30d avg) | 294 | 3y z -0.43 | **NEUTRAL** | STRESS if 3y z > +1.5 |
-| Macro/Policy | M2 | 10Y Treasury yield | 4.91% | 3m +21bp | **NEUTRAL** | STRESS if > 5.0% or +50bp/3m |
-| Macro/Policy | M3 | 10Y term premium (Kim-Wright) | 0.91% | 3m chg z -0.05 | **NEUTRAL** | STRESS if 3m change z > +1.5 (fiscal/Fed-independence premium) |
-| Macro/Policy | M4 | 2Y yield minus fed funds (implied path) | +71bp | FF 3.88% | **HIKES PRICED** | > +25bp = hikes priced; < -50bp = cuts priced |
-| Macro/Policy | M5 | 10Y breakeven inflation | 2.30% | 3m +7bp | **NEUTRAL** | STRESS if > 2.6% (oil pass-through de-anchoring) |
-| Macro/Policy | M6 | 10Y real yield (TIPS) | 2.62% | 3m +19bp | **HEADWIND** | Gold headwind if > 2.5% and rising |
-| Macro/Policy | M7 | Broad trade-weighted dollar | 121.7 | vs 200d +1.8% | **STRONG USD** | Weak-USD regime if below 200d SMA |
-| Macro/Policy | M8 | Bill curve: 4-week minus 3-month T-bill | -13bp | 1M vs 3M bills | **NEUTRAL** | Debt-limit X-date stress if > +15bp |
-| Macro/Policy | M9 | Fed net liquidity (WALCL - TGA - RRP) | $5.75tn | 13w -80bn; TGA $1.00tn | **DRAIN** | Risk-on if 13w change > 0; TGA drawdown = pre-X-date injection |
-| Macro/Policy | M10 | Credit: HYG/IEF 20d change | -2.15z | HY vs Treasuries | **STRESS** | STRESS if z < -1.5 |
-| US Equities | E-a | S&P 500 trend / drawdown | 7,354 | vs 200d +0.4%, DD -5.9% | **RISK-ON** | Risk-off if below 200d SMA |
-| US Equities | E-b | VIX and VIX/VIX3M | 28.1 | VIX/VIX3M 1.10 | **STRESS** | STRESS if ratio > 1.0 (inverted) |
-| US Equities | E-c | Breadth: RSP vs SPY (63d) | +3.9% | equal- vs cap-weight | **BROADENING** | Broadening if > 0 |
-| US Equities | E-d | Small caps: IWM vs SPY (63d) | -4.9% | small vs large | **NARROW** | Broadening if > 0 |
-| US Equities | E-e | AI-infrastructure risk: SMH vs SPY (63d) | -18.2% | semis vs market | **DERATING** | Regulation-risk repricing if < -5% |
-| US Equities | E-f | Policy baskets vs SPY (63d) | lead: health | defence -68%, health +17%, solar -11%, reg. banks +0%, energy +13% | **INFO** | Largest movers flag where policy is being priced |
-| US Equities | E-g | Midterm-cycle clock | day 3 | since 2026-11-03 | **SWEET SPOT** | Seasonal sweet spot: Oct midterm yr -> Dec pre-election yr |
-| Crypto | C-a | BTC Mayer multiple (price / 200d SMA) | 1.03 | BTC $75,738, DD -29% | **UPTREND** | < 0.8 historically deep value; > 2.4 euphoric |
-| Crypto | C-b | BTC 30d realized vol | 38% | annualised | **NEUTRAL** | STRESS if > 70% |
-| Crypto | C-c | ETH/BTC (90d change) | 0.0294 | 90d -0% | **BTC DOMINANCE** | Alt-season if > +10% and rising |
-| Crypto | C-d | US regulatory sentiment: COIN vs BTC (63d) | -27.7% | Coinbase vs bitcoin | **REG HEADWIND** | Negative = US-specific regulatory discount widening |
-| Crypto | C-e | Stablecoin supply (30d growth) | $295bn | 30d -4.0% | **OUTFLOW** | Liquidity inflow if > 0 |
-| Crypto | C-f | Halving-cycle phase | ACCUMULATION | 526 days to est. halving | **INFO** | Next halving ~Apr 2028 (estimate) |
-| Energy | N-a | Brent / WTI and spread | $98.4 / $90.5 | spread $7.9, Brent 3m +18% | **WAR PREMIUM** | War premium if Brent-WTI > $6 |
-| Energy | N-b | Curve proxy: USO vs USL (63d) | +6.3% | front vs 12m strip | **BACKWARDATION** | Backwardation tightening if > 0 |
-| Energy | N-c | US retail gasoline | $4.15 | 2y pct 87% | **POLITICAL PAIN** | Political pain if > $4.00 or top-30% of 2y |
-| Energy | N-d | Oil 20d return z-score (USO) | -0.43 | vs 1y of 20d returns | **NORMAL** | Spike if > +2, crash if < -2 |
-| Energy | N-e | Clean vs fossil: ICLN vs XLE (63d) | -19.7% | clean minus fossil | **FOSSIL LEADS** | Policy/rates rotation signal |
-| Precious Metals | P-a | Gold price / drawdown | $4,094 | DD from ATH -23%, vs 200d -9.1% | **DOWNTREND** | Below 200d SMA = trend broken |
-| Precious Metals | P-b | Gold/silver ratio | 79.1 | 2y z +0.07 | **NEUTRAL** | Silver cheap if 2y z > +1 |
-| Precious Metals | P-c | Gold/oil ratio (miner margin proxy) | 45.2 | vs 200d -15% | **MARGINS SQUEEZED** | Miners favoured if above 200d SMA |
-| Precious Metals | P-d | Miners vs bullion: GDX vs GLD (63d) | +1.2% | miners minus bullion | **CONFIRMING** | Confirms gold upleg if > 0 |
-| Precious Metals | P-e | Platinum/gold ratio | 0.371 | 1y z -1.33 | **PGM WEAK** | Industrial-metal stress if 1y z < -1 |
+Generated 2026-11-06T05:30:25+00:00. Each value is dated by the observation it describes; 'age' is days from that observation to 2026-11-05.
+
+| Group | Code | Indicator | Value | Observation date | Age (d) | Status | Read | Context | Rule |
+|---|---|---|---|---|---|---|---|---|---|
+| Macro and policy | M1 | Economic policy uncertainty (30-day average) | 288 | 2026-11-04 | 1 | OK | **NEUTRAL** | z -0.49 vs 3 years | z > +1.5 STRESS; z < -0.5 CALM |
+| Macro and policy | M2 | 10-year Treasury yield (FRED DGS10) | 4.90% | 2026-11-04 | 1 | OK | **NEUTRAL** | +27bp in 3 months | > 5.0% or +50bp in 63 days STRESS |
+| Macro and policy | M3 | 10-year term premium (Kim-Wright) | 0.93% | 2026-10-29 | 7 | OK | **NEUTRAL** | 3-month change z +0.23 | z > +1.5 STRESS |
+| Macro and policy | M4 | 2-year yield minus effective fed funds | +70bp | 2026-11-04 | 1 | OK | **HIGHER RATES PRICED** | effective fed funds 3.88% | > +25bp HIGHER RATES PRICED; < -50bp CUTS PRICED |
+| Macro and policy | M5 | 10-year breakeven inflation | 2.26% | 2026-11-04 | 1 | OK | **NEUTRAL** | +4bp in 3 months | > 2.6% STRESS |
+| Macro and policy | M6 | 10-year real yield (TIPS) | 2.64% | 2026-11-04 | 1 | OK | **HEADWIND** | +23bp in 3 months | > 2.5% and rising: gold HEADWIND |
+| Macro and policy | M7 | Broad trade-weighted dollar | 121.7 | 2026-10-30 | 6 | OK | **STRONG USD** | +1.8% vs 200-day | above SMA200 STRONG USD |
+| Macro and policy | M8 | 4-week minus 3-month bill yield | -18bp | 2026-11-04 | 1 | OK | **NEUTRAL** | 1-month vs 3-month bills | > +15bp X-DATE STRESS |
+| Macro and policy | M9 | Fed net liquidity (same-Wednesday basis) | $5,730bn | 2026-10-28 | 8 | OK | **DRAINING** | -35bn over 13 weeks; TGA $1,016bn | 13-week change > 0 EXPANDING, < 0 DRAINING |
+| Macro and policy | M10 | Credit risk-appetite proxy: HYG vs IEF | -2.15z | 2026-11-05 | 0 | OK | **STRESS** | high-yield ETF vs Treasuries | z < -1.5 STRESS |
+| Macro and policy | M11 | High-yield option-adjusted spread (ICE BofA) | 332bp | 2026-11-04 | 1 | OK | **CALM** | +62bp in 3 months | >= 5.0pp or +1.0pp in 63 days STRESS; >= 4.0pp WATCH |
+| Macro and policy | M12 | Fed funds futures: implied policy path | +38bp by Jun 2027 | 2026-11-04 | 1 | OK | **HIKES PRICED** | effective 3.88%; Dec-26 4.00%, Feb-27 4.08%, Apr-27 4.18%, Jun-27 4.26% | Jun-27 implied minus effective > +25bp HIKES PRICED; < -25bp CUTS PRICED |
+| U.S. equities | E-a | S&P 500 trend | 7,354 | 2026-11-05 | 0 | OK | **RISK-ON** | +0.4% vs 200-day; -5.9% from 1-year high | below SMA200 RISK-OFF |
+| U.S. equities | E-b | VIX term structure | 28.2 | 2026-11-05 | 0 | OK | **STRESS** | VIX/VIX3M 1.10 | > 1.0 STRESS; < 0.9 CALM |
+| U.S. equities | E-c | Breadth: equal-weight vs cap-weight | +3.9% | 2026-11-05 | 0 | OK | **BROADENING** | equal- minus cap-weight, 63 days | > 0 BROADENING |
+| U.S. equities | E-d | Small caps vs large caps | -4.9% | 2026-11-05 | 0 | OK | **NARROW** | small minus large, 63 days | > 0 BROADENING |
+| U.S. equities | E-e | Semiconductor relative strength: SMH vs SPY | -18.2% | 2026-11-05 | 0 | OK | **SEMIS LAGGING** | semiconductors minus market, 63 days | < -5% SEMIS LAGGING |
+| U.S. equities | E-f | Policy-sensitive sector baskets vs SPY | leader: health care | 2026-11-05 | 0 | OK | **INFO** | defence -13%, health care +17%, solar -11%, regional banks +0%, energy +13% | informational |
+| U.S. equities | E-g | Midterm seasonal window and election clock | window day 35 | 2026-11-05 | 0 | OK | **IN WINDOW** | trading day 2 after election day 03 Nov 2026; window opened 01 Oct 2026 | 1 Oct midterm year - 31 Dec pre-election year IN WINDOW |
+| Crypto | C-a | Bitcoin Mayer multiple | 1.10 | 2026-11-04 | 1 | STALE | **UPTREND** | BTC $80,405 (UTC bar 04 Nov), -24% from 1-year high | < 0.8 DEEP VALUE; > 2.4 EUPHORIC; else above/below 1 |
+| Crypto | C-b | Bitcoin 30-day realised volatility | 32% | 2026-11-04 | 1 | STALE | **NEUTRAL** | annualised | > 70% STRESS |
+| Crypto | C-c | ETH/BTC ratio | 0.0301 | 2026-11-04 | 1 | STALE | **BTC DOMINANCE** | +2% in 90 days | > +10% ALT-SEASON |
+| Crypto | C-d | Crypto equity vs bitcoin: COIN vs BTC | -20.9% | 2026-11-04 | 1 | STALE | **CRYPTO EQUITY LAGS** | Coinbase minus bitcoin, 63 days | < -10% CRYPTO EQUITY LAGS |
+| Crypto | C-e | Stablecoin supply: level and 30-day growth | $295bn | 2026-11-05 | 0 | OK | **OUTFLOW** | 30 days -4.3% (-13bn) | 30-day growth > 0 INFLOW |
+| Crypto | C-f | Halving-cycle clock | ACCUMULATION | - | - | OK | **INFO** | 527 days to the estimated halving | phase by days since halving (in-sample boundaries) |
+| Energy | N-a | Brent minus WTI (front-month futures) | $7.8 | 2026-11-05 | 0 | OK | **WIDE** | Brent $98.3, WTI $90.5; Brent +18% in 3 months | > $6 WIDE |
+| Energy | N-b | Oil-fund roll proxy: USO vs USL | +6.2% | 2026-11-05 | 0 | OK | **FRONT OUTPERFORMING** | front-month fund minus 12-month strip, 63 days | > 0 FRONT OUTPERFORMING |
+| Energy | N-f | WTI futures curve: 1st vs 12th contract | +$15.41 | 2026-11-05 | 0 | OK | **BACKWARDATION** | CLZ26 $90.52 vs CLX27 $75.11 (+17.0%) | > 0 BACKWARDATION; < 0 CONTANGO |
+| Energy | N-c | U.S. retail gasoline price | $4.15 | 2026-11-02 | 3 | OK | **AFFORDABILITY PRESSURE** | higher than 87% of the past 2 years | > $4.00 or > 70th percentile AFFORDABILITY PRESSURE |
+| Energy | N-d | Oil shock detector (USO 20-day return z) | -0.43 | 2026-11-05 | 0 | OK | **NORMAL** | vs a year of 20-day returns | > +2 SPIKE; < -2 CRASH |
+| Energy | N-e | Clean vs fossil energy equities | -19.6% | 2026-11-05 | 0 | OK | **FOSSIL LEADS** | clean minus fossil, 63 days | > 0 CLEAN LEADS |
+| Precious metals | P-a | Gold trend | $4,114 | 2026-11-05 | 0 | OK | **DOWNTREND** | -23% from high; -8.7% vs 200-day | below SMA200 DOWNTREND |
+| Precious metals | P-b | Gold/silver ratio | 78.8 | 2026-11-05 | 0 | OK | **NEUTRAL** | z +0.05 vs 2 years | z > +1 SILVER CHEAP; z < -1 SILVER RICH |
+| Precious metals | P-c | Gold/oil price ratio (input-cost proxy) | 45.4 | 2026-11-05 | 0 | OK | **COST HEADWIND** | -15% vs 200-day | above SMA200 COST TAILWIND |
+| Precious metals | P-d | Miners vs bullion: GDX vs GLD | +1.2% | 2026-11-05 | 0 | OK | **CONFIRMING** | miners minus bullion, 63 days | > 0 CONFIRMING |
+| Precious metals | P-e | Platinum/gold ratio | 0.371 | 2026-11-05 | 0 | OK | **PGM WEAK** | z -1.33 vs 1 year | z < -1 PGM WEAK |

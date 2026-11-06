@@ -1,13 +1,15 @@
 # The 2026 U.S. Midterms and Global Markets
 
 **Impact analysis for U.S. equities, crypto, energy and precious metals, plus a two-year outlook**
-*As of 5 November 2026, two days after the election. Prices are closes through 4 Nov 2026.*
+*As of 5 November 2026, two days after the election. Prices in this note are closes through 4 Nov 2026 unless a date is given.*
+
+*Corrected 6 Nov 2026 after an external review: policy status (GENIUS Act, wind and solar credits, projection vs certification), indicator names and dates, and evidence levels. See [06_review_response.md](06_review_response.md). Current, dated readings are in [`reports/monitor.md`](../reports/monitor.md); all backtests are development-sample results.*
 
 ---
 
 ## 1. Executive summary
 
-**The result.** Democrats won control of **both chambers**. Networks project a House majority, with CBS estimating 251–268 seats, and at least **54 Senate seats**. They flipped TX, ME, IA, OH, NC, SC and KS; Alaska and Mississippi were still uncalled on 4 Nov. Hakeem Jeffries is in line to become Speaker. From 3 Jan 2027 until at least Jan 2029, a Republican president faces a Democratic Congress. Since 1950, this is only the fourth time the president's party lost **both chambers in one night**; the others were 1954, 1994 and 2006.
+**The result.** Media decision desks **projected** Democratic control of **both chambers** on 4 Nov. These are projections, not official results: states certify their counts through November and December, and the 120th Congress convenes at noon on 3 Jan 2027 (Twentieth Amendment). Networks project a House majority, with CBS estimating 251–268 seats, and at least **54 Senate seats**. They flipped TX, ME, IA, OH, NC, SC and KS; Alaska and Mississippi were still uncalled on 4 Nov. Hakeem Jeffries is in line to become Speaker. From 3 Jan 2027 until at least Jan 2029, a Republican president faces a Democratic Congress. Since 1950, this is only the fourth time the president's party lost **both chambers in one night**; the others were 1954, 1994 and 2006.
 
 **The first reaction was a relief rally.** It was not a regime break.
 
@@ -29,9 +31,9 @@
 **Our core conclusions for the next 24 months:**
 
 1. **Gridlock, but not a quiet kind.** Congress can now block legislation. It cannot reverse what the White House controls on its own: tariffs (Sections 301/232), the Iran war, regulatory agencies and enforcement. The policy *mix* changes: no new fiscal stimulus, and more shutdown and debt-limit brinkmanship. Policy *volatility* does not fall. Expect headline-driven drawdowns inside an otherwise supportive cycle.
-2. **U.S. equities: constructive base case, with changing leadership.** The S&P 500 has risen in the 6 and 12 months after **all 19 midterms since 1950** (mean +14.6% at 12 months). The 30 Sep → 30 Jun window was positive in all 19 cycles (mean +20.1%). The closest analogs (1954, 1994, 2006) returned +30%, +26% and +7%. The risks are valuation (the index is near its high), a Fed with a hiking bias (2Y minus fed funds = **+71bp**), credit already wobbling (HYG/IEF z = −2.0) and **AI-infrastructure regulation** (data-centre moratoria). Prefer broadening, quality and healthcare over concentrated AI-capex exposure.
+2. **U.S. equities: constructive base case, with changing leadership.** The S&P 500 has risen in the 6 and 12 months after **all 19 midterms since 1950** (mean +14.6% at 12 months). This is descriptive: in all other years the same November window was positive 68% of the time (mean +7.3%), and 19 observations cannot separate an election effect from the cycle and the macro state (controls in [`reports/research_controls.md`](../reports/research_controls.md)). The 30 Sep → 30 Jun window was positive in all 19 cycles (mean +20.1%). The closest analogs (1954, 1994, 2006) returned +30%, +26% and +7%. The risks are valuation (the index is near its high), a Fed with a hiking bias (2Y minus fed funds = **+71bp**), a weak credit risk-appetite proxy (HYG/IEF 20-day change, z = −2.0; the direct high-yield spread, 3.3pp, is still calm) and **AI-infrastructure regulation** (data-centre moratoria). Prefer broadening, quality and healthcare over concentrated AI-capex exposure.
 3. **Crypto: the legislative tailwind is gone, so liquidity and the cycle decide.** The CLARITY Act failed cloture 49–50 on 15 Sep. A Democratic Congress, plus probes of the President's family crypto ventures, makes a market-structure law unlikely before 2029. The macro drivers currently say "not yet": stablecoin supply −4% over 30 days, Fed net liquidity −$80bn over 13 weeks, a firm dollar. The halving cycle enters its historical accumulation phase now; the next halving is around April 2028. Watch for the 2027 debt-limit TGA drawdown, which is historically a liquidity injection.
-4. **Energy: the war premium is the swing factor.** Congress does not set it. Brent is still $95 with Hormuz flows around 70% of pre-war levels. Gasoline at $4.15 sits at the 87th percentile of two years, and political pressure to end the war is now bipartisan. Base case: the premium compresses unevenly with sharp spikes. Clean energy gets a policy-sentiment bid, but the OBBBA credit cliff (wind/solar placed in service by end-2027) means 2027 pull-forward and then a 2028 air pocket.
+4. **Energy: the war premium is the swing factor.** Congress does not set it. Brent is still $95 with Hormuz flows around 70% of pre-war levels. Gasoline at $4.15 sits at the 87th percentile of two years, and political pressure to end the war is now bipartisan. Base case: the premium compresses unevenly with sharp spikes. Clean energy gets a policy-sentiment bid, but under P.L. 119-21 wind and solar projects whose construction **begins after 4 Jul 2026** must be placed in service by 31 Dec 2027 to earn the credits (projects begun earlier keep a four-year continuity window). Expect 2027 pull-forward for late starters, then a 2028 air pocket.
 5. **Precious metals: a correction inside a structural bull market.** Real yields of 2.6%, a firm dollar and a Democratic Senate that will vet Fed nominees all remove part of the 2025–26 "politicised Fed / debasement" premium. Central-bank buying (675t YTD), $40tn of debt with ~6% of GDP deficits, a 2027 debt-limit fight and the war are a floor. Gold is below its 200-day average, so trend models are defensive. The gold/silver ratio (78) is neutral. Platinum is weak.
 
 ---
@@ -121,7 +123,7 @@ Full tables: [`reports/event_study.md`](../reports/event_study.md). Reproduce wi
 |---|---|---|
 | Healthcare/managed care (ACA), staples (affordability politics), equal-weight/mid caps (broadening), regional banks (if the curve steepens; deregulation by agency continues) | Financials, industrials (tariff relief vs tariff cost), utilities (power demand vs data-centre politics) | AI infrastructure/neoclouds (moratoria, power politics), defence (budget fights), private prisons, tariff-exposed importers |
 
-**Scenarios (2-year horizon; subjective probabilities).**
+**Scenarios (2-year horizon; subjective probabilities).** These weights are the author's priors: not calibrated, and the drivers overlap (a credit shock feeds B and C), so they are not mutually exclusive states. The signpost rule in [02](02_observation_framework.md) and `midterm_quant/research/scenarios.py` updates each scenario's state, not these numbers.
 
 | Scenario | Probability | Description | S&P path |
 |---|---|---|---|
@@ -131,14 +133,14 @@ Full tables: [`reports/event_study.md`](../reports/event_study.md). Reproduce wi
 
 ### 4.2 Crypto
 
-**Starting point.** BTC $80.4k: Mayer multiple 1.10 (just above its 200-day), 30-day vol 32%, 24% below its 1-year high and ~36% below the Oct-2025 ATH. ETH/BTC flat (bitcoin dominance). Stablecoin supply **$295bn, −4.0% over 30 days** (outflow). COIN has lagged BTC by 20% over 63 days, a market-implied *U.S.-specific regulatory discount*.
+**Starting point.** BTC $80.4k: Mayer multiple 1.10 (just above its 200-day), 30-day vol 32%, 24% below its 1-year high and ~36% below the Oct-2025 ATH. ETH/BTC flat (bitcoin dominance). Stablecoin supply **$295bn, −4.0% over 30 days** (outflow). COIN has lagged BTC by 20% over 63 days. That gap mixes company earnings, equity-market beta and regulation; it is not a clean regulatory-sentiment measure.
 
 **Channels.**
 - *Legislation:* the CLARITY Act is effectively dead for this Congress. The SEC/CFTC jurisdiction split stays agency-made and reversible after 2028. This matters most for tokens with securities-like features, DeFi and U.S. exchanges, and least for BTC.
 - *Oversight:* House and Senate committees will investigate the Trump family's crypto ventures (World Liberty, memecoins). That is a headline risk, not a regulatory change.
-- *Stablecoins:* the GENIUS Act (2025) is already law, so issuance growth continues regardless. Stablecoins are also a growing T-bill buyer, which ties crypto liquidity to Treasury financing.
+- *Stablecoins:* the GENIUS Act was enacted on 18 Jul 2025 but takes effect, with the OCC's final rule, on **18 Jan 2027** (OCC Bulletin 2026-50). Until then its issuer requirements do not apply; after it, regulated issuers have a licensing path. Stablecoins are also a growing T-bill buyer, which ties crypto liquidity to Treasury financing.
 - *Liquidity:* Fed net liquidity (balance sheet − TGA − RRP) is the main macro driver. With the TGA at $1.0tn, the **2027 debt-limit episode** is the single most important crypto-macro event of the window: TGA run-down before the X-date (bullish), rebuild after (bearish). The 2023 analog: BTC rallied into June, then stalled during the rebuild.
-- *Cycle:* past halving cycles put tops ~1.5 years after each halving (Oct 2025 fits) and bottoms ~1 year after the top. The model's accumulation phase starts now, with the halving due around April 2028.
+- *Cycle:* past halving cycles put tops ~1.5 years after each halving (Oct 2025 fits) and bottoms ~1 year after the top. Three cycles only, and the phase boundaries in C3 were fitted to those tops: in-sample research, not evidence. The model's accumulation phase starts now, with the halving due around April 2028.
 
 **History says:** after the three midterms with BTC data, returns over the next 3 months were negative every time. After 12 months they were +32% on average, with 2018 and 2022 strongly positive.
 
@@ -146,13 +148,13 @@ Full tables: [`reports/event_study.md`](../reports/event_study.md). Reproduce wi
 
 ### 4.3 Energy
 
-**Starting point.** Brent $95 / WTI $88, after peaks of $118 (Mar) and $110 (Oct). The Brent–WTI spread is $6.7, a seaborne war premium. The curve is backwardated (USO beat USL by 2.7% over 63 days). Gasoline is $4.15 (87th percentile). ICLN lags XLE by 18% over 63 days despite the election-day bounce.
+**Starting point.** Brent $95 / WTI $88, after peaks of $118 (Mar) and $110 (Oct). The Brent–WTI spread is $6.7; part of it is a seaborne risk premium, but the spread also reflects crude quality, location, freight and roll timing. The WTI contract curve is backwardated (front minus 12th contract +$15.4 on 5 Nov; the USO-vs-USL fund gap used before is only a roll proxy). Gasoline is $4.15 (87th percentile). ICLN lags XLE by 18% over 63 days despite the election-day bounce.
 
 **Channels.**
 - *War premium:* this is the dominant variable. GOP leaders blaming the war for their losses raises the odds of a deal. A president "freed from the pursuit of popularity" (UBS) raises the odds of escalation. Expect **jump risk in both directions**, which favours convex and trend-following exposure over carry.
 - *Affordability politics:* gasoline above $4 into a 2028 presidential cycle means SPR policy, export-curb rhetoric and windfall-tax proposals. Without 60 Senate votes these mainly hit producer *equities* (sentiment), not crude.
-- *Fed and inflation:* oil passes through to breakevens (2.30% now). A renewed spike would lock in Fed hawkishness and hurt equities.
-- *Clean energy:* Democratic control helps sentiment and appropriations. OBBBA's credit phase-out means projects not begun by 4 Jul 2026 must be **placed in service by 31 Dec 2027**, creating a 2027 build rush and a 2028 cliff. Clean energy is also long-duration and suffers when yields rise.
+- *Fed and inflation:* oil passes through to breakevens (10-year 2.26% on 4 Nov; 2.24% on 5 Nov). A renewed spike would lock in Fed hawkishness and hurt equities.
+- *Clean energy:* Democratic control helps sentiment and appropriations. Under P.L. 119-21 (and IRS Notice 2025-42), wind and solar facilities whose construction **begins after 4 Jul 2026** must be **placed in service by 31 Dec 2027**; facilities begun on or before that date are not subject to the deadline and generally have four calendar years under the continuity safe harbor. Late starters create a 2027 build rush and a 2028 cliff. Clean energy is also long-duration and suffers when yields rise.
 - *Power demand vs politics:* data-centre gas demand faces Democratic scrutiny, a modest negative for natural-gas growth narratives.
 
 **History says:** oil has no reliable post-midterm pattern (3 up, 3 down). The 2006 analog (war plus a lost Congress) saw +62% over 12 months. Treat oil as a geopolitics trade.

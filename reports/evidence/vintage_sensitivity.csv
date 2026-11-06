@@ -1,0 +1,4 @@
+Code,Sharpe first-print,Sharpe latest-vintage,CAGR first-print,CAGR latest-vintage,Rebalances,Identical targets,Signal now first-print,Signal now latest-vintage
+C2,1.13988,1.15367,0.590828,0.600367,597,590,"{""BTC-USD"": 0.3}","{""BTC-USD"": 0.3}"
+P1,0.53019,0.532068,0.0727078,0.0729979,1028,382,"{""GLD"": 0.10335939107271229}","{""GLD"": 0.10335939107271229}"
+P4,0.4058,0.40597,0.0488393,0.0489554,984,6,"{""GLD"": 0.49564065729102524}","{""GLD"": 0.4994759417453252}"

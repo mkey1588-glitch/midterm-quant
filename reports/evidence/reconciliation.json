@@ -1,0 +1,40 @@
+[
+ {
+  "strategy": "E1",
+  "decisions backtrader": 1714,
+  "decisions reference": 1714,
+  "decisions compared": 1714,
+  "target mismatches": 0,
+  "first mismatches": [],
+  "fills backtrader": 171,
+  "fills reference": 171,
+  "fills matched by date+asset": 171,
+  "max fill price diff": 5.684341886080802e-14,
+  "max size diff (units)": 1.8189894035458565e-11,
+  "commission backtrader": 49702.022073286666,
+  "commission reference": 49702.02207328668,
+  "max daily NAV rel diff": 6.661338147750939e-16,
+  "final NAV backtrader": 19083164.453635838,
+  "final NAV reference": 19083164.45363584,
+  "final NAV rel diff": -2.220446049250313e-16
+ },
+ {
+  "strategy": "C1",
+  "decisions backtrader": 597,
+  "decisions reference": 597,
+  "decisions compared": 597,
+  "target mismatches": 0,
+  "first mismatches": [],
+  "fills backtrader": 571,
+  "fills reference": 571,
+  "fills matched by date+asset": 571,
+  "max fill price diff": 1.4551915228366852e-11,
+  "max size diff (units)": 2.064552973024547e-10,
+  "commission backtrader": 9076769.087760182,
+  "commission reference": 9076769.087760145,
+  "max daily NAV rel diff": 4.884981308350689e-15,
+  "final NAV backtrader": 196189562.99298513,
+  "final NAV reference": 196189562.99298447,
+  "final NAV rel diff": 3.3306690738754696e-15
+ }
+]

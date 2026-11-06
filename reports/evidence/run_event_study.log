@@ -1,0 +1,109 @@
+# Midterm election event study
+
+Forward returns from the close on US midterm election day (21/63/126/252 trading days).
+
+## Summary by asset
+
+| asset | n | years | +1m mean | +1m median | +1m %pos | +3m mean | +3m median | +3m %pos | +6m mean | +6m median | +6m %pos | +12m mean | +12m median | +12m %pos |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| S&P 500 | 19 | 1950-2022 | +1.3% | +2.3% | +73.7% | +7.1% | +6.6% | +89.5% | +13.4% | +14.2% | +100.0% | +14.6% | +13.6% | +100.0% |
+| Gold | 6 | 2002-2022 | +3.0% | +3.0% | +100.0% | +8.2% | +7.7% | +100.0% | +8.6% | +8.4% | +100.0% | +18.6% | +19.6% | +83.3% |
+| WTI crude | 6 | 2002-2022 | -5.8% | -5.2% | +50.0% | -3.2% | -5.3% | +50.0% | -2.5% | +2.5% | +50.0% | +4.0% | +0.5% | +50.0% |
+| Bitcoin | 3 | 2014-2022 | -12.9% | -11.3% | +33.3% | -19.0% | -13.4% | +0.0% | -5.9% | -11.7% | +33.3% | +31.6% | +46.7% | +66.7% |
+| Dollar index | 13 | 1974-2022 | -0.1% | +0.3% | +61.5% | -1.0% | -0.6% | +46.2% | -1.3% | -3.0% | +38.5% | -0.2% | +1.6% | +61.5% |
+
+10-year yield change (bp):
+
+| asset | n | years | +1m mean | +1m median | +1m %pos | +3m mean | +3m median | +3m %pos | +6m mean | +6m median | +6m %pos | +12m mean | +12m median | +12m %pos |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| US 10Y yield (bp) | 16 | 1962-2022 | -21bp | -18bp | +18.8% | -20bp | -26bp | +31.2% | -13bp | -21bp | +43.8% | +4bp | +22bp | +56.2% |
+
+## S&P 500 after every midterm
+
+| year | outcome | +1m | +3m | +6m | +12m |
+|---|---|---|---|---|---|
+| 1950 | Unified (D held both) | -0.8% | +12.9% | +14.2% | +16.5% |
+| 1954 | Lost both chambers | +6.3% | +12.9% | +16.0% | +30.3% |
+| 1958 | Opposition held both | +0.8% | +4.5% | +10.2% | +10.2% |
+| 1962 | Unified (D held both) | +7.4% | +12.7% | +19.8% | +24.4% |
+| 1966 | Unified (D held both) | +0.9% | +7.3% | +15.2% | +12.5% |
+| 1970 | Opposition held both | +5.6% | +14.7% | +23.2% | +10.6% |
+| 1974 | Opposition held both | -12.0% | +5.1% | +18.6% | +17.8% |
+| 1978 | Unified (D held both) | +3.4% | +3.5% | +6.0% | +7.8% |
+| 1982 | Split Congress | +1.0% | +4.0% | +18.1% | +19.0% |
+| 1986 | Lost Senate -> opposition both | +2.8% | +13.6% | +20.0% | +1.9% |
+| 1990 | Opposition held both | +5.6% | +14.9% | +21.5% | +24.7% |
+| 1994 | Lost both chambers | -4.3% | +3.3% | +12.6% | +25.9% |
+| 1998 | Opposition held both | +3.5% | +12.4% | +19.9% | +22.0% |
+| 2002 | Unified (R gained Senate) | -1.0% | -8.4% | +0.5% | +14.9% |
+| 2006 | Lost both chambers | +1.8% | +4.0% | +8.9% | +6.6% |
+| 2010 | Lost House | +2.3% | +9.3% | +12.9% | +2.1% |
+| 2014 | Lost Senate -> opposition both | +3.0% | +2.5% | +3.8% | +4.5% |
+| 2018 | Lost House | -4.4% | -1.7% | +4.6% | +12.0% |
+| 2022 | Lost House | +3.5% | +6.6% | +7.9% | +13.6% |
+
+## Gold after midterms
+
+| year | outcome | +1m | +3m | +6m | +12m |
+|---|---|---|---|---|---|
+| 2002 | Unified (R gained Senate) | +2.5% | +16.2% | +9.6% | +19.6% |
+| 2006 | Lost both chambers | +0.1% | +6.7% | +7.2% | +33.5% |
+| 2010 | Lost House | +5.1% | +1.1% | +10.8% | +29.3% |
+| 2014 | Lost Senate -> opposition both | +3.4% | +8.1% | +1.3% | -5.2% |
+| 2018 | Lost House | +1.9% | +7.3% | +5.1% | +19.6% |
+| 2022 | Lost House | +5.0% | +9.5% | +17.7% | +14.8% |
+
+## WTI crude after midterms
+
+| year | outcome | +1m | +3m | +6m | +12m |
+|---|---|---|---|---|---|
+| 2002 | Unified (R gained Senate) | +3.0% | +34.4% | +6.0% | +15.8% |
+| 2006 | Lost both chambers | +5.3% | +1.6% | +5.8% | +62.0% |
+| 2010 | Lost House | +5.3% | +6.9% | +17.8% | +9.2% |
+| 2014 | Lost Senate -> opposition both | -13.4% | -34.6% | -23.6% | -40.0% |
+| 2018 | Lost House | -15.4% | -15.3% | -0.9% | -8.1% |
+| 2022 | Lost House | -19.6% | -12.2% | -20.3% | -14.8% |
+
+## Bitcoin after midterms
+
+| year | outcome | +1m | +3m | +6m | +12m |
+|---|---|---|---|---|---|
+| 2014 | Lost Senate -> opposition both | +13.6% | -13.4% | -11.7% | -13.0% |
+| 2018 | Lost House | -40.9% | -37.6% | -39.5% | +46.7% |
+| 2022 | Lost House | -11.3% | -5.9% | +33.5% | +61.0% |
+
+## Presidential cycle (S&P 500 calendar-year price return, 1950-2025)
+
+| phase | mean | median | %pos | n |
+|---|---|---|---|---|
+| Post-election (Y1) | +8.4% | +9.1% | +63.2% | 19 |
+| Midterm (Y2) | +4.6% | +1.1% | +57.9% | 19 |
+| Pre-election (Y3) | +17.2% | +18.9% | +89.5% | 19 |
+| Election (Y4) | +8.1% | +11.8% | +84.2% | 19 |
+
+## Seasonal sweet spot: 30 Sep (midterm year) -> 30 Jun (pre-election year)
+
+| year | outcome | Q4 midterm -> Q2 pre-election |
+|---|---|---|
+| 1950 | Unified (D held both) | +7.8% |
+| 1954 | Lost both chambers | +27.0% |
+| 1958 | Opposition held both | +16.8% |
+| 1962 | Unified (D held both) | +23.3% |
+| 1966 | Unified (D held both) | +18.4% |
+| 1970 | Opposition held both | +17.1% |
+| 1974 | Opposition held both | +49.8% |
+| 1978 | Unified (D held both) | +0.4% |
+| 1982 | Split Congress | +39.2% |
+| 1986 | Lost Senate -> opposition both | +31.4% |
+| 1990 | Opposition held both | +21.3% |
+| 1994 | Lost both chambers | +17.7% |
+| 1998 | Opposition held both | +35.0% |
+| 2002 | Unified (R gained Senate) | +19.5% |
+| 2006 | Lost both chambers | +12.5% |
+| 2010 | Lost House | +15.7% |
+| 2014 | Lost Senate -> opposition both | +4.6% |
+| 2018 | Lost House | +1.0% |
+| 2022 | Lost House | +24.1% |
+
+Mean +20.1%, median +18.4%, positive 100% of 19.
+

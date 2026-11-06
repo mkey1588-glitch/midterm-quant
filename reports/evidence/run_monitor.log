@@ -1,0 +1,37 @@
+M1    Economic policy uncertainty (30-day average)              288 2026-11-04 OK      NEUTRAL
+M2    10-year Treasury yield (FRED DGS10)                     4.90% 2026-11-04 OK      NEUTRAL
+M3    10-year term premium (Kim-Wright)                       0.93% 2026-10-29 OK      NEUTRAL
+M4    2-year yield minus effective fed funds                  +70bp 2026-11-04 OK      HIGHER RATES PRICED
+M5    10-year breakeven inflation                             2.26% 2026-11-04 OK      NEUTRAL
+M6    10-year real yield (TIPS)                               2.64% 2026-11-04 OK      HEADWIND
+M7    Broad trade-weighted dollar                             121.7 2026-10-30 OK      STRONG USD
+M8    4-week minus 3-month bill yield                         -18bp 2026-11-04 OK      NEUTRAL
+M9    Fed net liquidity (same-Wednesday basis)             $5,730bn 2026-10-28 OK      DRAINING
+M10   Credit risk-appetite proxy: HYG vs IEF                 -2.15z 2026-11-05 OK      STRESS
+M11   High-yield option-adjusted spread (ICE BofA)            332bp 2026-11-04 OK      CALM
+M12   Fed funds futures: implied policy path         +38bp by Jun 2027 2026-11-04 OK      HIKES PRICED
+E-a   S&P 500 trend                                           7,354 2026-11-05 OK      RISK-ON
+E-b   VIX term structure                                       28.2 2026-11-05 OK      STRESS
+E-c   Breadth: equal-weight vs cap-weight                     +3.9% 2026-11-05 OK      BROADENING
+E-d   Small caps vs large caps                                -4.9% 2026-11-05 OK      NARROW
+E-e   Semiconductor relative strength: SMH vs SPY            -18.2% 2026-11-05 OK      SEMIS LAGGING
+E-f   Policy-sensitive sector baskets vs SPY         leader: health care 2026-11-05 OK      INFO
+E-g   Midterm seasonal window and election clock      window day 35 2026-11-05 OK      IN WINDOW
+C-a   Bitcoin Mayer multiple                                   1.10 2026-11-04 STALE   UPTREND
+C-b   Bitcoin 30-day realised volatility                        32% 2026-11-04 STALE   NEUTRAL
+C-c   ETH/BTC ratio                                          0.0301 2026-11-04 STALE   BTC DOMINANCE
+C-d   Crypto equity vs bitcoin: COIN vs BTC                  -20.9% 2026-11-04 STALE   CRYPTO EQUITY LAGS
+C-e   Stablecoin supply: level and 30-day growth             $295bn 2026-11-05 OK      OUTFLOW
+C-f   Halving-cycle clock                              ACCUMULATION       None OK      INFO
+N-a   Brent minus WTI (front-month futures)                    $7.8 2026-11-05 OK      WIDE
+N-b   Oil-fund roll proxy: USO vs USL                         +6.2% 2026-11-05 OK      FRONT OUTPERFORMING
+N-f   WTI futures curve: 1st vs 12th contract               +$15.41 2026-11-05 OK      BACKWARDATION
+N-c   U.S. retail gasoline price                              $4.15 2026-11-02 OK      AFFORDABILITY PRESSURE
+N-d   Oil shock detector (USO 20-day return z)                -0.43 2026-11-05 OK      NORMAL
+N-e   Clean vs fossil energy equities                        -19.6% 2026-11-05 OK      FOSSIL LEADS
+P-a   Gold trend                                             $4,114 2026-11-05 OK      DOWNTREND
+P-b   Gold/silver ratio                                        78.8 2026-11-05 OK      NEUTRAL
+P-c   Gold/oil price ratio (input-cost proxy)                  45.4 2026-11-05 OK      COST HEADWIND
+P-d   Miners vs bullion: GDX vs GLD                           +1.2% 2026-11-05 OK      CONFIRMING
+P-e   Platinum/gold ratio                                     0.371 2026-11-05 OK      PGM WEAK
+wrote reports/monitor.md, reports/results/monitor.json

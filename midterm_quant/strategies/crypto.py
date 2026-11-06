@@ -45,11 +45,21 @@ class C1CryptoTrendVolTarget(TargetWeightStrategy):
 
 
 class C2LiquidityRegimeBTC(TargetWeightStrategy):
+    """v2 (6 Nov 2026): net liquidity on a consistent Wednesday basis in USD billions.
+
+    v1 subtracted the week-average TGA (WTREGEN) from the Wednesday balance sheet. The fix was
+    decided from the data definitions, before v2 was run, and v2 is adopted whatever its result;
+    v1 stays runnable as ``C2v1`` and both appear in the trial registry.
+    """
+
     CODE = "C2"
+    VERSION = "v2"
+    EVIDENCE = "D2"
+    PROVENANCE = "v1 rule pre-specified on 4 Nov 2026; v2 changes only the net-liquidity input definition (WDTGAL, same-Wednesday RRP, USD bn) after an external review."
     NAME = "Dollar-liquidity regime BTC"
     ASSET_CLASS = "Crypto"
     ASSETS = ("BTC-USD",)
-    SIGNALS = ("fred:WALCL", "fred:WTREGEN", "fred:RRPONTSYD", "fred:DTWEXBGS")
+    SIGNALS = ("derived:netliq_bn", "fred:DTWEXBGS")
     CALENDAR = "crypto"
     BENCHMARK = "BTC-USD"
     START = "2015-06-01"
@@ -58,11 +68,12 @@ class C2LiquidityRegimeBTC(TargetWeightStrategy):
     THESIS = "Divided government makes a 2027 debt-limit standoff likely: Treasury runs down the TGA (liquidity injection) before the X-date and rebuilds it after (drain). Net liquidity and the dollar trend lead BTC."
     params = (("liq_lookback", 91), ("w_liq", 0.4), ("w_usd", 0.3), ("w_trend", 0.3))
 
+    def liquidity_series(self, n):
+        return self.series("derived:netliq_bn", n)
+
     def target_weights(self):
         n = self.p.liq_lookback + 1
-        nl = ind.net_liquidity(
-            self.series("fred:WALCL", n), self.series("fred:WTREGEN", n), self.series("fred:RRPONTSYD", n)
-        )
+        nl = self.liquidity_series(n)
         liq_up = nl[-1] > nl[0]
         usd_weak = True
         if self.available("fred:DTWEXBGS", 101):
@@ -71,6 +82,21 @@ class C2LiquidityRegimeBTC(TargetWeightStrategy):
         btc = self.series("BTC-USD", 101)
         trend = btc[-1] > ind.sma(btc, 100)
         return {"BTC-USD": self.p.w_liq * liq_up + self.p.w_usd * usd_weak + self.p.w_trend * trend}
+
+
+class C2v1LiquidityRegimeBTC(C2LiquidityRegimeBTC):
+    """SUPERSEDED v1 of C2 (kept for the trial registry): week-average TGA, latest daily RRP."""
+
+    CODE = "C2v1"
+    VERSION = "v1"
+    EVIDENCE = "D1"
+    NAME = "Dollar-liquidity regime BTC (v1, superseded)"
+    SIGNALS = ("fred:WALCL", "fred:WTREGEN", "fred:RRPONTSYD", "fred:DTWEXBGS")
+
+    def liquidity_series(self, n):
+        return ind.net_liquidity(
+            self.series("fred:WALCL", n), self.series("fred:WTREGEN", n), self.series("fred:RRPONTSYD", n)
+        )
 
 
 def halving_phase(d, halvings=config.BTC_HALVINGS, expansion_end=540, bear_end=900) -> str:
@@ -86,7 +112,13 @@ def halving_phase(d, halvings=config.BTC_HALVINGS, expansion_end=540, bear_end=9
 
 
 class C3HalvingCycle(TargetWeightStrategy):
+    """IN-SAMPLE RESEARCH, not a validated strategy: the phase boundaries (540 / 900 days) were
+    chosen knowing where the 2017, 2021 and 2025 tops fell, and there are only three cycles.
+    It is excluded from every count of strategies that beat a benchmark."""
+
     CODE = "C3"
+    EVIDENCE = "D3"
+    PROVENANCE = "Phase boundaries fitted by eye to the dates of the 2017, 2021 and 2025 cycle tops (in-sample)."
     NAME = "Halving-cycle phase + trend"
     ASSET_CLASS = "Crypto"
     ASSETS = ("BTC-USD",)
@@ -140,6 +172,8 @@ class C4CryptoRotation(TargetWeightStrategy):
 
 class C5StablecoinImpulse(TargetWeightStrategy):
     CODE = "C5"
+    EVIDENCE = "D2"
+    PROVENANCE = "Replacement for C5a after C5a lost money as first specified; 4 configurations tried (lookback 14/30/60, trend leg on/off); 30d with trend leg adopted. Stablecoin history is restated by DefiLlama, so growth rates are not point-in-time."
     NAME = "Stablecoin-supply liquidity impulse"
     ASSET_CLASS = "Crypto"
     ASSETS = ("BTC-USD", "ETH-USD")
@@ -202,3 +236,4 @@ class C5aShockReversal(TargetWeightStrategy):
 
 STRATEGIES = [C1CryptoTrendVolTarget, C2LiquidityRegimeBTC, C3HalvingCycle, C4CryptoRotation, C5StablecoinImpulse]
 REJECTED = [C5aShockReversal]
+SUPERSEDED = [C2v1LiquidityRegimeBTC]

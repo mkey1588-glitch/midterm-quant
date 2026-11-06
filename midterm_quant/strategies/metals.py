@@ -66,6 +66,8 @@ class P2GoldSilverRatio(TargetWeightStrategy):
 
 class P3MinerMarginRotation(TargetWeightStrategy):
     CODE = "P3"
+    EVIDENCE = "D2"
+    PROVENANCE = "Revision of P3a after P3a's -72% drawdown; 2 configurations tried (GDX trend gate on/off); gate on adopted. The gold/oil ratio is an input-cost proxy, not a miner-margin measure."
     NAME = "Miner margin rotation (gold/oil ratio)"
     ASSET_CLASS = "Precious Metals"
     ASSETS = ("GDX", "GLD")

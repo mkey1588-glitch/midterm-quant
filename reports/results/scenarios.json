@@ -1,0 +1,697 @@
+{
+ "rule": {
+  "confirm": ">= 3 signposts in each of 4 consecutive weekly readings",
+  "revoke": "<= 1 signposts in 2 consecutive weekly readings",
+  "missing": "missing or stale input = signpost not holding (listed as a gap)",
+  "independence": "scenarios evaluated separately; several or none may be confirmed",
+  "probabilities": "40/35/25 are subjective priors, not calibrated and not updated by the rule"
+ },
+ "scenarios": {
+  "A": {
+   "name": "Productive gridlock and a war wind-down",
+   "prior": 0.4,
+   "signposts": [
+    {
+     "codes": [
+      "M2"
+     ],
+     "label": "10-year yield below 4.75%"
+    },
+    {
+     "codes": [
+      "M4"
+     ],
+     "label": "2-year minus fed funds between -50 and +25bp"
+    },
+    {
+     "codes": [
+      "N-a"
+     ],
+     "label": "Brent-WTI below $5"
+    },
+    {
+     "codes": [
+      "N-c"
+     ],
+     "label": "Gasoline below its 70th percentile of 2 years"
+    },
+    {
+     "codes": [
+      "E-c"
+     ],
+     "label": "Equal-weight beating cap-weight (63d)"
+    },
+    {
+     "codes": [
+      "M10"
+     ],
+     "label": "HYG/IEF z above -1"
+    },
+    {
+     "codes": [
+      "M9"
+     ],
+     "label": "Net liquidity rising over 13 weeks"
+    }
+   ]
+  },
+  "B": {
+   "name": "Confrontation",
+   "prior": 0.35,
+   "signposts": [
+    {
+     "codes": [
+      "M4"
+     ],
+     "label": "2-year minus fed funds above +50bp"
+    },
+    {
+     "codes": [
+      "M8"
+     ],
+     "label": "4-week bill 15bp above 3-month"
+    },
+    {
+     "codes": [
+      "N-a",
+      "N-d"
+     ],
+     "label": "Brent-WTI above $8, or an oil spike (USO 20-day z above +2)"
+    },
+    {
+     "codes": [
+      "E-b"
+     ],
+     "label": "VIX above VIX3M"
+    },
+    {
+     "codes": [
+      "M1"
+     ],
+     "label": "Policy uncertainty z above +1.5"
+    },
+    {
+     "codes": [
+      "M5"
+     ],
+     "label": "Breakeven above 2.6%"
+    }
+   ]
+  },
+  "C": {
+   "name": "AI-capex and credit slowdown",
+   "prior": 0.25,
+   "signposts": [
+    {
+     "codes": [
+      "M10"
+     ],
+     "label": "HYG/IEF z below -1.5"
+    },
+    {
+     "codes": [
+      "E-a"
+     ],
+     "label": "S&P 500 below its 200-day average"
+    },
+    {
+     "codes": [
+      "E-e"
+     ],
+     "label": "Semis lagging SPY by more than 5% (63d)"
+    },
+    {
+     "codes": [
+      "M4"
+     ],
+     "label": "2-year minus fed funds below -50bp"
+    },
+    {
+     "codes": [
+      "C-b"
+     ],
+     "label": "Bitcoin 30-day volatility above 70%"
+    },
+    {
+     "codes": [
+      "E-d"
+     ],
+     "label": "Small caps lagging large caps (63d)"
+    }
+   ]
+  }
+ },
+ "history": [
+  {
+   "week_end": "2026-07-24",
+   "scenario": "A",
+   "holding": 4,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10",
+    "M9"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-07-31",
+   "scenario": "A",
+   "holding": 4,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10",
+    "M9"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-07",
+   "scenario": "A",
+   "holding": 3,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-14",
+   "scenario": "A",
+   "holding": 3,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-08-21",
+   "scenario": "A",
+   "holding": 3,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-08-28",
+   "scenario": "A",
+   "holding": 3,
+   "of": 7,
+   "which": [
+    "M2",
+    "E-c",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-09-04",
+   "scenario": "A",
+   "holding": 3,
+   "of": 7,
+   "which": [
+    "N-a",
+    "E-c",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-09-11",
+   "scenario": "A",
+   "holding": 2,
+   "of": 7,
+   "which": [
+    "N-a",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-09-18",
+   "scenario": "A",
+   "holding": 2,
+   "of": 7,
+   "which": [
+    "N-a",
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-09-25",
+   "scenario": "A",
+   "holding": 1,
+   "of": 7,
+   "which": [
+    "M10"
+   ],
+   "gaps": [],
+   "state": "CONFIRMED"
+  },
+  {
+   "week_end": "2026-10-02",
+   "scenario": "A",
+   "holding": 1,
+   "of": 7,
+   "which": [
+    "M10"
+   ],
+   "gaps": [],
+   "state": "REVOKED"
+  },
+  {
+   "week_end": "2026-10-09",
+   "scenario": "A",
+   "holding": 1,
+   "of": 7,
+   "which": [
+    "M10"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-16",
+   "scenario": "A",
+   "holding": 0,
+   "of": 7,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-23",
+   "scenario": "A",
+   "holding": 0,
+   "of": 7,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-30",
+   "scenario": "A",
+   "holding": 1,
+   "of": 7,
+   "which": [
+    "E-c"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-11-05",
+   "scenario": "A",
+   "holding": 1,
+   "of": 7,
+   "which": [
+    "E-c"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-07-24",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-07-31",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-07",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-14",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-21",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-28",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-04",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-11",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-18",
+   "scenario": "B",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "M4"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-25",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-02",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-09",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-16",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-23",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-30",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "N-a/N-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-11-05",
+   "scenario": "B",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M4",
+    "E-b"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-07-24",
+   "scenario": "C",
+   "holding": 0,
+   "of": 6,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-07-31",
+   "scenario": "C",
+   "holding": 0,
+   "of": 6,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-07",
+   "scenario": "C",
+   "holding": 0,
+   "of": 6,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-14",
+   "scenario": "C",
+   "holding": 0,
+   "of": 6,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-21",
+   "scenario": "C",
+   "holding": 0,
+   "of": 6,
+   "which": [],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-08-28",
+   "scenario": "C",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "E-e"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-04",
+   "scenario": "C",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "E-e"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-11",
+   "scenario": "C",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-18",
+   "scenario": "C",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-09-25",
+   "scenario": "C",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-02",
+   "scenario": "C",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-09",
+   "scenario": "C",
+   "holding": 1,
+   "of": 6,
+   "which": [
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-16",
+   "scenario": "C",
+   "holding": 3,
+   "of": 6,
+   "which": [
+    "M10",
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-23",
+   "scenario": "C",
+   "holding": 3,
+   "of": 6,
+   "which": [
+    "M10",
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-10-30",
+   "scenario": "C",
+   "holding": 2,
+   "of": 6,
+   "which": [
+    "M10",
+    "E-d"
+   ],
+   "gaps": [],
+   "state": "WATCHING"
+  },
+  {
+   "week_end": "2026-11-05",
+   "scenario": "C",
+   "holding": 3,
+   "of": 6,
+   "which": [
+    "M10",
+    "E-e",
+    "E-d"
+   ],
+   "gaps": [
+    "C-b STALE"
+   ],
+   "state": "WATCHING"
+  }
+ ]
+}

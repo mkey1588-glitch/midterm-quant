@@ -1,34 +1,43 @@
 # midterm_quant: post-midterm cross-asset research and strategy library
 
-Analysis of how the **3 Nov 2026 U.S. midterm results** affect U.S. equities, crypto, energy and precious metals. It includes a two-year observation framework with 33 quantified indicators and **20 quantitative strategies (5 per asset class)**, all implemented and backtested in **Backtrader**.
+Analysis of how the **3 Nov 2026 U.S. midterm results** may affect U.S. equities, crypto, energy, precious metals and markets abroad. It includes a two-year observation framework (36 indicators) and **20 rule-based strategies (5 per asset class)** implemented in **Backtrader**, with every result labelled by the evidence behind it.
 
-**Live page:** [midterm-quant.vercel.app](https://midterm-quant.vercel.app), the post-midterm market playbook built from `reports/midterm_playbook.html`.
+**Live page:** [midterm-quant.vercel.app](https://midterm-quant.vercel.app), generated from `reports/results/results.json` by `scripts/build_site.py`.
 
-> Research and education only, not investment advice. Backtests are hypothetical, use ETF proxies and are subject to the limitations listed in `docs/03_strategy_book.md`.
+> Research and education only, not investment advice. **Every backtest uses data that was seen while the rules were written (development sample); there is no out-of-sample or live result.** Nothing has been traded. The prospective test starts on 9 Nov 2026 ([docs/07](docs/07_validation_plan.md)).
 
-## Deliverables
+## Evidence levels
+
+| Level | Meaning | Strategies |
+|---|---|---|
+| D1 | Rule and parameters written before the first backtest run | 16 |
+| D2 | Revised after seeing results (C5, P3) or for a data-definition fix (C2 v2) | 3 |
+| D3 | In-sample research: parameters fitted to known outcomes; not counted as a result | C3 |
+
+46 configurations were tried in total and are all re-run (`reports/evidence/trial_registry.csv`); deflated Sharpe ratios use that count. None of the 19 non-research strategies clears a deflated Sharpe of 0.95.
+
+## Documents
 
 | Document | Contents |
 |---|---|
-| [docs/01_midterm_market_impact.md](docs/01_midterm_market_impact.md) | Election outcome, policy-control map, market reaction, event study (1950–2022), asset-class deep dives, 24-month scenario matrix |
-| [docs/02_observation_framework.md](docs/02_observation_framework.md) | Event calendar to Nov 2028, 33 indicators with formulas, thresholds and current readings, scenario signposts |
-| [docs/03_strategy_book.md](docs/03_strategy_book.md) | 20 strategy specs, backtest results, current signals, research log of rejected specs |
-| [docs/04_framework_selection.md](docs/04_framework_selection.md) | Comparison of 7 open-source frameworks, weighted scoring, architecture, migration path to LEAN/NautilusTrader |
-| `reports/` | Generated: backtest summary, yearly returns, class blends, current signals, event study, monitor, equity-curve charts |
+| [docs/01_midterm_market_impact.md](docs/01_midterm_market_impact.md) | Election outcome (projected, not yet certified), policy-control map, market reaction, event study, asset-class analysis, scenarios (subjective priors) |
+| [docs/02_observation_framework.md](docs/02_observation_framework.md) | Event calendar to Nov 2028, the 36 indicators, scenario signposts and the confirmation/revocation rule |
+| [docs/03_strategy_book.md](docs/03_strategy_book.md) | 20 strategies, standardised development-sample results, research log |
+| [docs/04_framework_selection.md](docs/04_framework_selection.md) | Framework comparison; why Backtrader; what a LEAN migration really requires |
+| [docs/05_specifications.md](docs/05_specifications.md) | Generated: complete specification of every indicator and strategy |
+| [docs/06_review_response.md](docs/06_review_response.md) | Generated: finding -> change -> evidence matrix for the 6 Nov 2026 review, with what is still missing |
+| [docs/07_validation_plan.md](docs/07_validation_plan.md) | Pre-registered prospective validation (frozen code, paper ledger, decision rules) |
+| [lean/README.md](lean/README.md) | LEAN ports of E1 and C1 (not run) and their requirements |
 
-## Headline view (5 Nov 2026)
-
-- **Outcome.** Democrats won both chambers. That means gridlock on fiscal policy, but tariffs, the Iran war and the agencies stay with the White House. Policy volatility does not fall.
-- **Equities.** The S&P 500 rose over the following 12 months after all 19 midterms since 1950 (mean +14.6%). The base case is constructive with broadening leadership. Risks: a hawkish Fed (2Y − FF = +71bp), credit stress (HYG/IEF z −2.0) and AI-infrastructure regulation.
-- **Crypto.** The legislative tailwind is gone (CLARITY failed 49–50). Liquidity indicators read "not yet": stablecoins −4% over 30 days, net liquidity draining. The 2027 debt-limit TGA cycle and the ~Apr 2028 halving are the catalysts.
-- **Energy.** The Iran-war premium is the swing factor (Brent $95, gasoline $4.15). Expect two-way jump risk. The OBBBA clean-energy cliff falls at end-2027.
-- **Metals.** Gold −23% from its ATH and below trend. Real yields of 2.6% and Senate vetting of Fed nominees are headwinds; central-bank buying and fiscal/war stress are the floor.
-
-## Quickstart
+## Reproduce everything
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+scripts/reproduce.sh
 ```
+
+It creates `.venv` from `requirements.lock`, downloads or reuses data (Yahoo chart API, FRED and ALFRED, DefiLlama; no keys), runs the offline tests with a log, every backtest and study, writes the data manifest and verifies it, then rebuilds `results.json`, the generated docs and the page. To reproduce the committed numbers exactly you need the same data snapshot: run with `OFFLINE=1` against a `data_cache/` whose hashes match `reports/evidence/data_manifest.json` (`scripts/verify_data.py`). Yahoo data may not be redistributed, so it is not in the repository.
+
+Individual steps:
 
 ```bash
 .venv/bin/python -m pytest -q
@@ -43,15 +52,16 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 ```bash
-.venv/bin/python scripts/run_event_study.py
+.venv/bin/python scripts/run_research.py
 ```
 
-- **Tests** (57, offline): indicators, alignment and lags, engine mechanics, smoke and no-look-ahead checks for every strategy.
-- **Backtests:** all 20 strategies plus the rejected specs, written to `reports/` (about 70s on a warm cache).
-- **Monitor:** the observation dashboard, written to `reports/monitor.md`. Run it weekly.
-- **Event study:** midterm forward returns, written to `reports/event_study.md`.
+## Evidence produced by a run (`reports/evidence/`)
 
-Data comes from the Yahoo Finance chart API, FRED and DefiLlama (no API keys) and is cached in `data_cache/` for 20 hours. Run a subset with `scripts/run_backtests.py --codes E1 C2 P4`.
+- `pytest.log`, `pytest-junit.xml`: the offline test suite (synthetic data; no network).
+- `data_manifest.csv/.json`: every input file with units, release timing, availability rule, licence, retrieval time, SHA-256, last observation used and status; `revision_audit.csv` and `first_print_coverage.csv` for ALFRED vintages.
+- `trial_registry.csv`, `performance_risk.csv`, `class_blends.csv`, `blend_attribution.csv`, `vintage_sensitivity.csv`.
+- `ledgers/<CODE>/`: daily NAV and cash (interest, commissions, borrow), target and actual weights, every order and fill.
+- `reconciliation.json`: an independent pandas engine reproduces E1 and C1 exactly.
 
 ## Writing a new strategy
 
@@ -62,8 +72,9 @@ from midterm_quant.engine.base import TargetWeightStrategy
 class MyStrategy(TargetWeightStrategy):
     CODE, NAME, ASSET_CLASS = "X1", "Example", "US Equities"
     ASSETS = ("SPY", "IEF")          # traded
-    SIGNALS = ("fred:DFII10",)       # signal-only feeds (Yahoo symbol, fred:<id>, llama:stablecoins)
+    SIGNALS = ("fred:DFII10",)       # signal-only feeds (Yahoo symbol, fred:<id>, llama:stablecoins, derived:netliq_bn)
     START, REBALANCE, WARMUP = "2010-01-01", "W", 210
+    EVIDENCE = "D1"
     THESIS = "why this should work"
 
     def target_weights(self):
@@ -72,15 +83,19 @@ class MyStrategy(TargetWeightStrategy):
         return {"SPY": 0.98} if risk_on else {"IEF": 0.98}
 ```
 
-Register it in `midterm_quant/strategies/__init__.py`. The no-look-ahead test then covers it automatically.
+Register it in `midterm_quant/strategies/__init__.py`, add its specification to `midterm_quant/specs.py` and a `Trial` to `strategies/trials.py`. The no-look-ahead and specification tests then cover it; every new series needs a catalogue entry (`data/catalog.py`).
 
 ## Layout
 
 ```
-midterm_quant/   data/ (sources, point-in-time alignment) · indicators.py · engine/ (Backtrader base, runner, metrics)
-                 strategies/ (equities, crypto, energy, metals) · research/ (event study, monitor)
-scripts/         run_backtests.py · run_monitor.py · run_event_study.py
-tests/           57 offline tests on synthetic data
-docs/            the four analysis documents
-reports/         generated outputs
+midterm_quant/   data/ (sources + provenance, catalog, vintages, point-in-time alignment) · indicators.py
+                 engine/ (Backtrader base and ledgers, runner, metrics, standardised evaluation)
+                 strategies/ (four classes, trials.py) · research/ (monitor, scenarios, event and shock
+                 studies, ablation, global transmission, reconciliation) · specs.py
+scripts/         reproduce.sh · run_backtests · run_monitor · run_research · build_vintages ·
+                 build_manifest · verify_data · build_results · build_docs · build_site · reconcile_lean
+site_src/        page stylesheet, chart script, authored content (policy status, narrative, review matrix)
+lean/            LEAN ports of E1 and C1 (not run)
+tests/           offline tests on synthetic data
+reports/         generated outputs; results/ (JSON for the page); evidence/ (logs, manifests, ledgers)
 ```

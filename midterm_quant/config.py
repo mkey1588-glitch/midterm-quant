@@ -8,6 +8,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CACHE_DIR = Path(os.environ.get("MQ_CACHE_DIR", ROOT / "data_cache"))
 REPORTS_DIR = ROOT / "reports"
+EVIDENCE_DIR = REPORTS_DIR / "evidence"
+RESULTS_DIR = REPORTS_DIR / "results"
+
+# ---- research timeline -----------------------------------------------------------------
+# Every backtest stops at BACKTEST_END so that reruns on a later data snapshot reproduce the
+# same window. All data up to this date was seen while the strategies were developed, so it
+# is *development data*: nothing before FREEZE_DATE may be called out-of-sample.
+BACKTEST_END = "2026-11-05"
+# Rules, parameters and code are frozen at the commit that carries this date. The
+# prospective (genuinely unseen) evaluation window starts with the first rebalance after it.
+FREEZE_DATE = "2026-11-06"
+PROSPECTIVE_START = "2026-11-09"
 
 # One-way cost per trade as a fraction of notional (commission + half-spread + slippage).
 COST_BPS = {

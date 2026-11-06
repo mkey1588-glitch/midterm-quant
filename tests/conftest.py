@@ -17,7 +17,7 @@ LEVELS = {
     "fred:DTB3": 2.0, "fred:DFII10": 1.0, "fred:WALCL": 7.0e6, "fred:WTREGEN": 7.0e5,
     "fred:RRPONTSYD": 100.0, "fred:DTWEXBGS": 110.0, "fred:USEPUINDXD": 120.0,
     "fred:THREEFYTP10": 0.5, "fred:GASREGW": 3.0, "^VIX": 18.0, "^VIX3M": 20.0, "^TNX": 3.0,
-    "llama:stablecoins": 1.5e11,
+    "llama:stablecoins": 1.5e11, "derived:netliq_bn": 6000.0, "fred:WDTGAL": 8.0e5,
 }
 
 

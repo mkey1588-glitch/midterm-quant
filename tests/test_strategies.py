@@ -2,7 +2,7 @@
 import pytest
 
 from midterm_quant.engine.runner import required_series, run_backtest
-from midterm_quant.strategies import ALL, REJECTED
+from midterm_quant.strategies import ALL, REJECTED, SUPERSEDED
 
 from conftest import synthetic_panel
 
@@ -23,7 +23,7 @@ def test_registry_shape():
         assert cls.THESIS, f"{cls.CODE} needs a THESIS linking it to the midterm analysis"
 
 
-@pytest.mark.parametrize("cls", ALL + REJECTED, ids=lambda c: c.CODE)
+@pytest.mark.parametrize("cls", ALL + REJECTED + SUPERSEDED, ids=lambda c: c.CODE)
 def test_runs_and_respects_limits(cls):
     p = _panel(cls)
     r = run_backtest(cls, start=p.calendar[0], panel=p)
