@@ -1,0 +1,27 @@
+E1   Midterm-cycle seasonal + trend               CAGR  +9.5% Sharpe  0.64 MaxDD -25.0%
+E2   Policy-regime sector momentum                CAGR  +7.8% Sharpe  0.42 MaxDD -32.1%
+E3   Vol-target + VIX term-structure              CAGR  +8.1% Sharpe  0.70 MaxDD -17.6%
+E4   Broadening vs mega-cap rotation              CAGR +10.9% Sharpe  0.61 MaxDD -36.4%
+E5   Political-shock reversal (credit-filtered)   CAGR  +8.3% Sharpe  0.69 MaxDD -22.4%
+C1   BTC/ETH trend + vol target                   CAGR +58.7% Sharpe  1.29 MaxDD -54.3%
+C2   Dollar-liquidity regime BTC                  CAGR +54.1% Sharpe  1.22 MaxDD -56.3%
+C3   Halving-cycle phase + trend                  CAGR +83.1% Sharpe  1.49 MaxDD -45.5%
+C4   BTC/ETH/SOL dual-momentum rotation           CAGR +39.5% Sharpe  0.84 MaxDD -66.1%
+C5   Stablecoin-supply liquidity impulse          CAGR +44.6% Sharpe  1.02 MaxDD -46.8%
+N1   Crude trend + curve-shape filter             CAGR  -1.4% Sharpe -0.06 MaxDD -54.4%
+N2   Geopolitical risk-premium fade               CAGR  -0.7% Sharpe -0.22 MaxDD -40.5%
+N3   E&P equities vs crude relative value         CAGR  +2.0% Sharpe  0.10 MaxDD -30.4%
+N4   Clean vs fossil policy rotation              CAGR  +9.3% Sharpe  0.45 MaxDD -44.9%
+N5   Gasoline crack seasonal mean-reversion       CAGR  +3.0% Sharpe  0.33 MaxDD  -8.2%
+P1   Gold trend with real-yield/USD tilt          CAGR  +7.4% Sharpe  0.54 MaxDD -29.0%
+P2   Gold/silver ratio reversion                  CAGR  +8.8% Sharpe  0.45 MaxDD -55.1%
+P3   Miner margin rotation (gold/oil ratio)       CAGR  +5.3% Sharpe  0.27 MaxDD -45.3%
+P4   Policy-stress gold overlay                   CAGR  +5.3% Sharpe  0.41 MaxDD -24.1%
+P5   Gold/silver/platinum/palladium dual momentum CAGR  +8.8% Sharpe  0.44 MaxDD -47.5%
+C5a  Liquidation-shock reversal (rejected)        CAGR  -1.2% Sharpe -0.03 MaxDD -45.6%
+P3a  Miner momentum rotation (rejected)           CAGR  +2.3% Sharpe  0.16 MaxDD -71.5%
+wrote reports/backtest_summary.md, reports/current_signals.md
+wrote reports/equity_us_equities.png
+wrote reports/equity_crypto.png
+wrote reports/equity_energy.png
+wrote reports/equity_precious_metals.png

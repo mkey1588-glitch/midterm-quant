@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "echo 'static page: nothing to install'",
+  "buildCommand": "mkdir -p site && cp reports/midterm_playbook.html site/index.html",
+  "outputDirectory": "site"
+}
