@@ -2,6 +2,8 @@
 
 Analysis of how the **3 Nov 2026 U.S. midterm results** affect U.S. equities, crypto, energy and precious metals. It includes a two-year observation framework with 33 quantified indicators and **20 quantitative strategies (5 per asset class)**, all implemented and backtested in **Backtrader**.
 
+**Live page:** [midterm-quant.vercel.app](https://midterm-quant.vercel.app), the post-midterm market playbook built from `reports/midterm_playbook.html`.
+
 > Research and education only, not investment advice. Backtests are hypothetical, use ETF proxies and are subject to the limitations listed in `docs/03_strategy_book.md`.
 
 ## Deliverables

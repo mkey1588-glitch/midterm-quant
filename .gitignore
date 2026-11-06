@@ -6,3 +6,4 @@ data_cache/
 .vercel/
 site/
 .DS_Store
+.env*
